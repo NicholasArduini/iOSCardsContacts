@@ -14,7 +14,6 @@
 		5D3D236A22C01021006B7459 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D236822C01021006B7459 /* LaunchScreen.storyboard */; };
 		5D3D237222C0115B006B7459 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237122C0115B006B7459 /* Reachability.swift */; };
 		5D3D237422C01203006B7459 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237322C01203006B7459 /* LoginViewController.swift */; };
-		5D3D237622C01B21006B7459 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D237522C01B21006B7459 /* GoogleService-Info.plist */; };
 		5D3D237822C02084006B7459 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237722C02084006B7459 /* SignUpViewController.swift */; };
 		5D3D237C22C02F88006B7459 /* BrowseMyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */; };
 		5D54F4B823B40DEE00B6B027 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4B723B40DEE00B6B027 /* Card.swift */; };
@@ -24,6 +23,7 @@
 		5D54F4C123B5C91C00B6B027 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4C023B5C91C00B6B027 /* String+Extension.swift */; };
 		5D54F4C323B5DAD300B6B027 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4C223B5DAD300B6B027 /* UIViewController+Extension.swift */; };
 		5D54F4C523B651DE00B6B027 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4C423B651DE00B6B027 /* StorageService.swift */; };
+		5D54F4C723B65BAD00B6B027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D54F4C623B65BAD00B6B027 /* GoogleService-Info.plist */; };
 		5D7669D023B2BD0B00BF8BA5 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */; };
 		5D7669D323B2BDB400BF8BA5 /* MyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */; };
 		5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BB323B25622003CF582 /* UIColor+Extension.swift */; };
@@ -47,7 +47,6 @@
 		5D3D236B22C01021006B7459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D3D237122C0115B006B7459 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5D3D237322C01203006B7459 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "../New Group/LoginViewController.swift"; sourceTree = "<group>"; };
-		5D3D237522C01B21006B7459 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D3D237722C02084006B7459 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "../New Group/SignUpViewController.swift"; sourceTree = "<group>"; };
 		5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseMyCardsViewController.swift; sourceTree = "<group>"; };
 		5D54F4B723B40DEE00B6B027 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		5D54F4C023B5C91C00B6B027 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5D54F4C223B5DAD300B6B027 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5D54F4C423B651DE00B6B027 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		5D54F4C623B65BAD00B6B027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewModel.swift; sourceTree = "<group>"; };
 		5DA55BB323B25622003CF582 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				5DFD77D323B2505400C6EF1A /* Services */,
 				5DA55BC123B268EA003CF582 /* Supporting */,
 				5D3D236B22C01021006B7459 /* Info.plist */,
-				5D3D237522C01B21006B7459 /* GoogleService-Info.plist */,
+				5D54F4C623B65BAD00B6B027 /* GoogleService-Info.plist */,
 			);
 			path = "Cards Contacts";
 			sourceTree = "<group>";
@@ -289,7 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D3D236A22C01021006B7459 /* LaunchScreen.storyboard in Resources */,
-				5D3D237622C01B21006B7459 /* GoogleService-Info.plist in Resources */,
+				5D54F4C723B65BAD00B6B027 /* GoogleService-Info.plist in Resources */,
 				5D3D236722C01021006B7459 /* Assets.xcassets in Resources */,
 				5D3D236522C0101C006B7459 /* Main.storyboard in Resources */,
 			);
