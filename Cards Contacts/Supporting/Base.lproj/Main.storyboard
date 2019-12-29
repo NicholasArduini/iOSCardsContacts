@@ -192,14 +192,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rK5-ar-cCd">
-                                <rect key="frame" x="0.0" y="185" width="414" height="574"/>
+                                <rect key="frame" x="22" y="193" width="370" height="566"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cardDetailTableCell" id="iTR-hj-CXD" customClass="CardAttributeFieldTableViewCell" customModule="Cards" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="370" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iTR-hj-CXD" id="odJ-g6-8wW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d9-SC-eHK">
@@ -213,7 +213,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-bu-M8v">
-                                                    <rect key="frame" x="149" y="11" width="245" height="22"/>
+                                                    <rect key="frame" x="149" y="11" width="201" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="5N8-iK-aWR"/>
                                                     </constraints>
@@ -246,10 +246,10 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eZR-M2-qLR" firstAttribute="leading" secondItem="tjJ-jX-xaO" secondAttribute="leading" id="6rT-Uu-cek"/>
-                            <constraint firstItem="tjJ-jX-xaO" firstAttribute="trailing" secondItem="rK5-ar-cCd" secondAttribute="trailing" id="9fQ-5G-ywy"/>
-                            <constraint firstItem="rK5-ar-cCd" firstAttribute="top" secondItem="eZR-M2-qLR" secondAttribute="bottom" id="Ib3-hW-2IV"/>
+                            <constraint firstItem="tjJ-jX-xaO" firstAttribute="trailing" secondItem="rK5-ar-cCd" secondAttribute="trailing" constant="22" id="9fQ-5G-ywy"/>
+                            <constraint firstItem="rK5-ar-cCd" firstAttribute="top" secondItem="eZR-M2-qLR" secondAttribute="bottom" constant="8" id="Ib3-hW-2IV"/>
                             <constraint firstItem="eZR-M2-qLR" firstAttribute="top" secondItem="a5h-ZI-7O3" secondAttribute="top" id="OMR-7v-Zdt"/>
-                            <constraint firstItem="rK5-ar-cCd" firstAttribute="leading" secondItem="tjJ-jX-xaO" secondAttribute="leading" id="QEj-1J-24v"/>
+                            <constraint firstItem="rK5-ar-cCd" firstAttribute="leading" secondItem="tjJ-jX-xaO" secondAttribute="leading" constant="22" id="QEj-1J-24v"/>
                             <constraint firstItem="eZR-M2-qLR" firstAttribute="trailing" secondItem="tjJ-jX-xaO" secondAttribute="trailing" id="pfi-3j-lVE"/>
                             <constraint firstItem="tjJ-jX-xaO" firstAttribute="bottom" secondItem="rK5-ar-cCd" secondAttribute="bottom" id="ufv-WL-bJN"/>
                         </constraints>

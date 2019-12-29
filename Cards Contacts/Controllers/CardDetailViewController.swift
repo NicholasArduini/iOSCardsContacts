@@ -74,6 +74,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         } else {
             headerView.backgroundColor = .lightGray
         }
+        headerView.layer.cornerRadius = 6
         
         let label = UILabel(frame: CGRect(x: 20, y: 0, width: self.view.frame.size.width - 20, height: 40))
         label.text = self.cardDetailViewModel.getCardAttributes().fieldItemList[section].fieldName
