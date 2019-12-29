@@ -10,6 +10,8 @@ import UIKit
 
 class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, MyCardsDelegte {
 
+    private let SECTION_HEADER_HEIGHT : CGFloat = 30
+    
     private var myCardsViewModel = MyCardsViewModel()
     private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,MyCardsViewModel,Card>!
     
@@ -74,8 +76,9 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let card = self.myCardsViewModel.getCards()[indexPath.row]
-        performSegue(withIdentifier: Constants.SHOW_CARD_DETAIL_SEGUE, sender: card)
+        if let card = self.myCardsViewModel.getCard(for: indexPath) {
+            performSegue(withIdentifier: Constants.SHOW_CARD_DETAIL_SEGUE, sender: card)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,4 +91,14 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let title = self.myCardsViewModel.cardsSectionTitles[section]
+        let width = self.view.frame.size.width
+        let view = Common.buildTableViewSectionHeader(title: title, height: SECTION_HEADER_HEIGHT, width: width, cornerRadius: 0)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return SECTION_HEADER_HEIGHT
+    }
 }

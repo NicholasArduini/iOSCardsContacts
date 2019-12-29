@@ -179,8 +179,8 @@
 			children = (
 				5D54F4BB23B5AEDF00B6B027 /* Auth */,
 				5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */,
-				5D3D236122C0101C006B7459 /* ProfileViewController.swift */,
 				5D54F4C823B660B800B6B027 /* CardDetailViewController.swift */,
+				5D3D236122C0101C006B7459 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

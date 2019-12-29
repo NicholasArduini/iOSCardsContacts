@@ -12,6 +12,8 @@ import MessageUI
 
 class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetailDelegte, MFMailComposeViewControllerDelegate {
     
+    private let SECTION_HEADER_HEIGHT : CGFloat = 40
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -68,25 +70,14 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView =  UIView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
-        if #available(iOS 13.0, *) {
-            headerView.backgroundColor = .systemGray5
-        } else {
-            headerView.backgroundColor = .lightGray
-        }
-        headerView.layer.cornerRadius = 6
-        
-        let label = UILabel(frame: CGRect(x: 20, y: 0, width: self.view.frame.size.width - 20, height: 40))
-        label.text = self.cardDetailViewModel.getCardAttributes().fieldItemList[section].fieldName
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        
-        headerView.addSubview(label)
-        return headerView
+        let title = self.cardDetailViewModel.getCardAttributes().fieldItemList[section].fieldName
+        let width = self.view.frame.size.width
+        let view = Common.buildTableViewSectionHeader(title: title, height: SECTION_HEADER_HEIGHT, width: width, cornerRadius: 6)
+        return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return SECTION_HEADER_HEIGHT
     }
     
 }

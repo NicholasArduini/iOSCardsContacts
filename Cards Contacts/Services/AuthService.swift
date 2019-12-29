@@ -21,6 +21,11 @@ class AuthService {
     init() {
     }
     
+    static func getCurrentUserUID() -> String {
+        // TODO change to actual identifier when data is ready
+        return "Nicholas"
+    }
+    
     func signIn(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if(user != nil){ //sign in success

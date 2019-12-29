@@ -10,8 +10,17 @@ import UIKit
 
 protocol GenericTableViewDataSource {
     func numberOfSections() -> Int
+    func getSectionIndexTitles() -> [String]
     func numberOfRows(_ section: Int) -> Int
     func modelAt<T>(_ section: Int, _ index: Int) -> T
+}
+
+// handle optional methods
+extension GenericTableViewDataSource {
+
+    func getSectionIndexTitles() -> [String]{
+        return []
+    }
 }
 
 class TableViewDataSource<CellType,ViewModel : GenericTableViewDataSource, Model>: NSObject, UITableViewDataSource where CellType: UITableViewCell {
@@ -48,5 +57,9 @@ class TableViewDataSource<CellType,ViewModel : GenericTableViewDataSource, Model
         let vm : Model = self.viewModel.modelAt(indexPath.section, indexPath.row)
         self.configureCell(cell, vm)
         return cell
+    }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return viewModel.getSectionIndexTitles()
     }
 }
