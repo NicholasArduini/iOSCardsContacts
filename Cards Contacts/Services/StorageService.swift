@@ -49,4 +49,27 @@ class StorageService {
         }
         return nil
     }
+    
+    static func migrateVersion() {
+        print("Realm \(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "none found")" )
+        var config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            schemaVersion: 1,
+
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { migration, oldSchemaVersion in
+
+            })
+        config.deleteRealmIfMigrationNeeded = true
+        Realm.Configuration.defaultConfiguration = config
+
+        // Now that we've told Realm how to handle the schema change, opening the file
+        // will automatically perform the migration
+        do {
+            _ = try Realm()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 }

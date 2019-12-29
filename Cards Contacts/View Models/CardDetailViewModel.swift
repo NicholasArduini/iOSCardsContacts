@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 protocol CardDetailDelegte {
     func cardDetailsUpdated()
@@ -23,7 +22,6 @@ class CardDetailViewModel : GenericTableViewDataSource {
     init (cardUid: String) {
         self.cardUid = cardUid
         updateCardDetails()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     func numberOfSections() -> Int {
