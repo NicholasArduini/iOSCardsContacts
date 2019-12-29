@@ -16,27 +16,38 @@ protocol MyCardsDelegte {
 class MyCardsViewModel : GenericTableViewDataSource {
     
     var delegate: MyCardsDelegte?
-    private var cardList = CardList()
+    private var filteredCardList = CardList()
+    private var unfilteredCardList = CardList()
     private var isFavouriteSelected = false
     
     init () {
         updateCards()
     }
     
+    func filterCards(from string: String){
+        if string.isEmpty {
+            filteredCardList = unfilteredCardList
+        }  else {
+            filteredCardList.cards = unfilteredCardList.cards.filter { card in
+                return card.name.lowercased().contains(string.lowercased())
+            }
+        }
+    }
+    
     func numberOfSections() -> Int {
         return 1
     }
-        
+    
     func numberOfRows(_ section: Int) -> Int {
-        return self.cardList.cards.count
+        return self.filteredCardList.cards.count
     }
     
     func modelAt<Card>(_ section: Int, _ index: Int) -> Card {
-        return self.cardList.cards[index] as! Card
+        return self.filteredCardList.cards[index] as! Card
     }
     
     func getCards() -> [Card]{
-        return cardList.cards
+        return filteredCardList.cards
     }
     
     func getIsFavouriteSelected() -> Bool {
@@ -70,7 +81,8 @@ class MyCardsViewModel : GenericTableViewDataSource {
         let cards = storageService.retrieveObject(objectType: Card.self)
         if let cards = cards {
             let cardList = CardList(cards: Array(cards))
-            self.cardList = cardList
+            self.unfilteredCardList = cardList
+            self.filteredCardList = cardList
             self.delegate?.cardsListUpdated()
         }
     }

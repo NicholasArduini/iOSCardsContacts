@@ -15,6 +15,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,16 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         self.tableView.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.dismiss(animated: false, completion: nil)
+    }
+    
     func setupNavBar() {
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        self.navigationItem.searchController = search
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        self.navigationItem.searchController = searchController
                 
         let rectSize = CGRect(x: 0, y: 0, width: 140, height: 30)
         let logoContainer = UIView(frame: rectSize)
@@ -58,7 +65,10 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController)
+        if let searchText = searchController.searchBar.text {
+            myCardsViewModel.filterCards(from: searchText)
+            tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
