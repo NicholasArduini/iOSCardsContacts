@@ -28,10 +28,14 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        self.loginButton.loadingIndicator(true)
         if let email = emailTextField.text, let password = passwordTextField.text {
-            AuthService(self).signIn(email: email, password: password) {
+            AuthService(self).signIn(email: email, password: password, onSuccess: {
+                self.loginButton.loadingIndicator(false)
                 self.performSegue(withIdentifier: Constants.LOGIN_TO_TAB_SEGUE, sender: self)
-            }
+            }, onFailure: {
+                self.loginButton.loadingIndicator(false)
+            })
         }
     }
 }

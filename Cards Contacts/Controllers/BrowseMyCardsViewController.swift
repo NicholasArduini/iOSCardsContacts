@@ -8,10 +8,10 @@
 
 import UIKit
 
-class BrowseMyCardsViewController: UIViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, MyCardsDelegte {
+class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate, MyCardsDelegte {
 
     private var myCardsViewModel = MyCardsViewModel()
-    private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,Card>!
+    private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,MyCardsViewModel,Card>!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
@@ -22,10 +22,12 @@ class BrowseMyCardsViewController: UIViewController, UISearchControllerDelegate,
         self.setupNavBar()
     
         self.myCardsViewModel.delegate = self
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.MY_CARDS_TABLE_CELL, items: self.myCardsViewModel.getCards()) { cell, vm in
-            cell.setCell(card: vm)
+        self.datasource = TableViewDataSource(cellIdentifier: Constants.MY_CARDS_TABLE_CELL, viewModel: self.myCardsViewModel) { cell, model in
+            let cell: BrowseMyCardsTableViewCell = cell
+            cell.setCell(card: model)
         }
         self.tableView.dataSource = self.datasource
+        self.tableView.delegate = self
     }
     
     func setupNavBar() {
@@ -52,11 +54,28 @@ class BrowseMyCardsViewController: UIViewController, UISearchControllerDelegate,
     }
     
     func cardsListUpdated() {
-        self.datasource.updateItems(self.myCardsViewModel.getCards())
         self.tableView.reloadData()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let card = self.myCardsViewModel.getCards()[indexPath.row]
+        performSegue(withIdentifier: Constants.SHOW_CARD_DETAIL_SEGUE, sender: card)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == Constants.SHOW_CARD_DETAIL_SEGUE {
+            if let vc = segue.destination as? CardDetailViewController {
+                vc.card = sender as? Card
+            }
+        }
+    }
+    
 }

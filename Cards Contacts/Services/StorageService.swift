@@ -41,4 +41,12 @@ class StorageService {
         }
         return nil
     }
+    
+    func retrieveObject<T : Object>(objectType: T.Type, with predicate: NSPredicate) -> Results<T>? {
+        if let realm = self.realm {
+            let objects = realm.objects(objectType).filter(predicate)
+            return objects
+        }
+        return nil
+    }
 }

@@ -8,10 +8,12 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class CardsWebService {
     
     public static let CARDS_LIST_COLLECTION_NAME = "cards-list"
+    public static let USER_CARDS_COLLECTION_NAME = "user-cards"
     
     let db : Firestore!
     
@@ -19,8 +21,8 @@ class CardsWebService {
         db = Firestore.firestore()
     }
     
-    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, completion: @escaping (T) -> ()) {
-        let docRef = db.collection(collectionName).document("Nicholas")
+    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, documentName: String, completion: @escaping (T) -> ()) {
+        let docRef = db.collection(collectionName).document(documentName)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 do {

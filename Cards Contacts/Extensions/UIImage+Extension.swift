@@ -40,7 +40,7 @@ extension UIImage {
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
         label.textColor = UIColor.white
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: size * 0.375)
         label.text = text
 
         UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0)

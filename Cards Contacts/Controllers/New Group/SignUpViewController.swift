@@ -30,10 +30,14 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButton(_ sender: Any) {
+        self.signUpButton.loadingIndicator(true)
         if let email = emailTextField.text, let password = passwordTextField.text {
-            AuthService(self).signUp(email: email, password: password) {
+            AuthService(self).signUp(email: email, password: password, onSuccess: {
+                self.signUpButton.loadingIndicator(false)
                 self.performSegue(withIdentifier: Constants.SIGN_UP_TO_TAB_SEGUE, sender: self)
-            }
+            }, onFailure: {
+                self.signUpButton.loadingIndicator(false)
+            })
         }
     }
     
@@ -41,3 +45,5 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
+

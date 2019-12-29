@@ -21,11 +21,12 @@ class AuthService {
     init() {
     }
     
-    func signIn(email: String, password: String, onSuccess: @escaping () -> ()) {
+    func signIn(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if(user != nil){ //sign in success
                 onSuccess()
             } else {
+                onFailure()
                 if let error = error?.localizedDescription {
                     if let vc = self.vc {
                         Alerter(vc: vc).presentAlert(withMessage: error)
@@ -35,11 +36,12 @@ class AuthService {
         })
     }
     
-    func signUp(email: String, password: String, onSuccess: @escaping () -> ()) {
+    func signUp(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
         Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
             if(user != nil){ //user created success
                 onSuccess()
             } else {
+                onFailure()
                 if let error = error?.localizedDescription {
                     if let vc = self.vc {
                         Alerter(vc: vc).presentAlert(withMessage: error)

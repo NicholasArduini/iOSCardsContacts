@@ -13,7 +13,7 @@ protocol MyCardsDelegte {
     func cardsListUpdated()
 }
 
-class MyCardsViewModel {
+class MyCardsViewModel : GenericTableViewDataSource {
     
     var delegate: MyCardsDelegte?
     private var cardList = CardList()
@@ -22,13 +22,17 @@ class MyCardsViewModel {
     init () {
         updateCards()
     }
+    
+    func numberOfSections() -> Int {
+        return 1
+    }
         
     func numberOfRows(_ section: Int) -> Int {
         return self.cardList.cards.count
     }
     
-    func modelAt(_ index: Int) -> Card {
-        return self.cardList.cards[index]
+    func modelAt<Card>(_ section: Int, _ index: Int) -> Card {
+        return self.cardList.cards[index] as! Card
     }
     
     func getCards() -> [Card]{
@@ -47,7 +51,8 @@ class MyCardsViewModel {
     func updateCards () {
         self.retrieveCards()
         
-        CardsWebService().getDocument(objectType: CardList.self, collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME) { cardList in
+        // TODO should be current uid instead of nicholas
+        CardsWebService().getDocument(objectType: CardList.self, collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME, documentName: "Nicholas") { cardList in
             self.storeCards(cards: cardList.cards)
             self.retrieveCards()
         }

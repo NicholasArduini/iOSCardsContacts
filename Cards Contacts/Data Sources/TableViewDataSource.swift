@@ -8,25 +8,35 @@
 
 import UIKit
 
-class TableViewDataSource<CellType,ViewModel>: NSObject, UITableViewDataSource where CellType: UITableViewCell {
+protocol GenericTableViewDataSource {
+    func numberOfSections() -> Int
+    func numberOfRows(_ section: Int) -> Int
+    func modelAt<T>(_ section: Int, _ index: Int) -> T
+}
+
+class TableViewDataSource<CellType,ViewModel : GenericTableViewDataSource, Model>: NSObject, UITableViewDataSource where CellType: UITableViewCell {
     
     let cellIdentifier: String
-    var items: [ViewModel]
-    let configureCell: (CellType, ViewModel) -> ()
+    var viewModel: ViewModel
+    let configureCell: (CellType, Model) -> ()
     
-    init(cellIdentifier: String, items: [ViewModel], configureCell: @escaping (CellType,ViewModel) -> ()) {
+    init(cellIdentifier: String, viewModel: ViewModel, configureCell: @escaping (CellType, Model) -> ()) {
         
         self.cellIdentifier = cellIdentifier
-        self.items = items
+        self.viewModel = viewModel
         self.configureCell = configureCell
     }
     
-    func updateItems(_ items: [ViewModel]) {
-        self.items = items
+    func updateItems(_ viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.numberOfSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.viewModel.numberOfRows(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,7 +45,7 @@ class TableViewDataSource<CellType,ViewModel>: NSObject, UITableViewDataSource w
             fatalError("Cell with identifier \(self.cellIdentifier) not found")
         }
         
-        let vm = self.items[indexPath.row]
+        let vm : Model = self.viewModel.modelAt(indexPath.section, indexPath.row)
         self.configureCell(cell, vm)
         return cell
     }
