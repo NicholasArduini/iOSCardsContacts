@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "cards-dark.png",
+      "filename" : "cardsLight.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "cards.png",
+      "filename" : "cardsDark.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
