@@ -85,7 +85,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == Constants.SHOW_CARD_DETAIL_SEGUE {
-            if let vc = segue.destination as? CardDetailViewController {
+            if let vc = segue.destination as? CardDetailParentViewController {
                 vc.card = sender as? Card
             }
         }

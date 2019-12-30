@@ -18,23 +18,42 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="QU2-4d-HDo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Find" image="search" id="gq6-Yb-UQa"/>
+                    <tabBarItem key="tabBarItem" title="Find" image="magnifyingglass" catalog="system" id="gq6-Yb-UQa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1k-q1-slA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749" y="348"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="8rJ-Kc-sve" customClass="ProfileViewController" customModule="Cards" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="8rJ-Kc-sve" customClass="ProfileViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vq-yF-NPR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <connections>
+                                    <segue destination="Yhr-sn-otj" kind="embed" id="g6m-bq-osn"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5Vq-yF-NPR" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="BGm-1w-wgI"/>
+                            <constraint firstItem="5Vq-yF-NPR" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="IJ0-bo-4xb"/>
+                            <constraint firstItem="5Vq-yF-NPR" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="ZWI-Fh-p5y"/>
+                            <constraint firstItem="5Vq-yF-NPR" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="wwN-1b-c6m"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="ngg-Vg-XVO">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Profile" image="person.circle.fill" catalog="system" id="DCY-o9-Fk9"/>
+                            <barButtonItem systemItem="compose" id="Geq-Bf-R55"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,19 +132,49 @@
                     <connections>
                         <outlet property="favouriteButton" destination="Oal-Mi-nDm" id="nG8-dp-asz"/>
                         <outlet property="tableView" destination="rbb-GX-Lsh" id="K9M-O1-T0G"/>
-                        <segue destination="Yhr-sn-otj" kind="show" identifier="showCardDetailSegue" id="anY-uI-hoW"/>
+                        <segue destination="Col-wq-631" kind="show" identifier="showCardDetailSegue" id="Frv-7Z-YUA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77s-ee-7Ru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1509" y="-320"/>
         </scene>
-        <!--Card Detail View Controller-->
+        <!--Card Detail Parent View Controller-->
+        <scene sceneID="rkG-m7-YqE">
+            <objects>
+                <viewController id="Col-wq-631" customClass="CardDetailParentViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a0C-og-iPU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQK-EU-ek2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <connections>
+                                    <segue destination="Yhr-sn-otj" kind="embed" identifier="showCardDetailContainerSegue" id="upl-3N-ckd"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rQK-EU-ek2" firstAttribute="leading" secondItem="UlY-0k-Edy" secondAttribute="leading" id="C0h-g6-WF1"/>
+                            <constraint firstItem="rQK-EU-ek2" firstAttribute="bottom" secondItem="UlY-0k-Edy" secondAttribute="bottom" id="DjQ-9N-wru"/>
+                            <constraint firstItem="rQK-EU-ek2" firstAttribute="top" secondItem="a0C-og-iPU" secondAttribute="top" id="Eq3-bx-5T9"/>
+                            <constraint firstItem="rQK-EU-ek2" firstAttribute="trailing" secondItem="UlY-0k-Edy" secondAttribute="trailing" id="LU2-K9-Yxo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UlY-0k-Edy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8Aa-gU-zQR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCj-Ev-1r2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2328.985507246377" y="-320.08928571428572"/>
+        </scene>
+        <!--Card Detail Container View Controller-->
         <scene sceneID="9ge-PR-FTy">
             <objects>
-                <viewController id="Yhr-sn-otj" customClass="CardDetailViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yhr-sn-otj" customClass="CardDetailContainerViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5h-ZI-7O3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZR-M2-qLR">
@@ -273,7 +322,7 @@
                     <viewLayoutGuide key="safeArea" id="1TF-Mr-gTv"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2327.536231884058" y="-320.08928571428572"/>
+            <point key="canvasLocation" x="3152" y="-320"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="96Y-rS-gFy">
@@ -519,7 +568,7 @@
                     <connections>
                         <segue destination="L2V-MQ-K76" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="YXj-Cq-FAY" kind="relationship" relationship="viewControllers" id="F4J-Rk-zNU"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="YzJ-pP-iDJ"/>
+                        <segue destination="QqG-8c-SSr" kind="relationship" relationship="viewControllers" id="YzJ-pP-iDJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -530,7 +579,7 @@
         <scene sceneID="4UC-aP-Iy9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="L2V-MQ-K76" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cards" image="addressBook" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Cards" image="rectangle.stack.person.crop" catalog="system" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ysu-P5-ju1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -545,16 +594,37 @@
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="APZ-hK-byM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QqG-8c-SSr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tto-yH-q3d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="hZv-Hz-0M6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4J-EH-GK9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="1034"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="addressBook" width="25" height="25"/>
         <image name="cards" width="594" height="185"/>
-        <image name="profile" width="25" height="25"/>
-        <image name="search" width="25" height="25"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="rectangle.stack.person.crop" catalog="system" width="64" height="60"/>
         <image name="starOpen" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wFJ-GV-Zqy"/>
+        <segue reference="EY0-SN-Cnq"/>
+        <segue reference="g6m-bq-osn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

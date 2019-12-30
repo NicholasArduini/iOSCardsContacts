@@ -1,5 +1,5 @@
 //
-//  CardDetailViewController.swift
+//  CardDetailContainerViewController.swift
 //  Cards Contacts
 //
 //  Created by Nicholas Arduini on 12/27/19.
@@ -10,7 +10,7 @@
 import UIKit
 import MessageUI
 
-class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetailDelegte, MFMailComposeViewControllerDelegate {
+class CardDetailContainerViewController: UIViewController, UITableViewDelegate, CardDetailDelegte, MFMailComposeViewControllerDelegate {
     
     private let SECTION_HEADER_HEIGHT : CGFloat = 40
     
@@ -19,17 +19,22 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    var card : Card!
+    var card : Card?
+    var isMyProfile = false
     private var cardDetailViewModel : CardDetailViewModel!
     private var datasource: TableViewDataSource<CardAttributeFieldTableViewCell,CardDetailViewModel,FieldItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.makeNavTransparent()
         self.setupHeader()
         
-        self.cardDetailViewModel = CardDetailViewModel(cardUid: card.uid)
+        if let card = card {
+            self.cardDetailViewModel = CardDetailViewModel(cardUid: card.uid, isMyProfile: self.isMyProfile)
+        } else {
+            self.cardDetailViewModel = CardDetailViewModel()
+        }
+        
         self.cardDetailViewModel.delegate = self
         self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, viewModel: self.cardDetailViewModel) { cell, model in
             let cell: CardAttributeFieldTableViewCell = cell
@@ -47,12 +52,14 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     }
     
     func setupHeader() {
-        if let image = UIImage.generateCircleImageWithText(text: card.name.getInitials(), size: 120) {
-            imageView.image = image
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
+        if let card = self.card {
+            if let image = UIImage.generateCircleImageWithText(text: card.name.getInitials(), size: 120) {
+                imageView.image = image
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+            }
+            nameLabel.text = card.name
         }
-        nameLabel.text = card.name
     }
     
     func cardDetailsUpdated() {

@@ -26,6 +26,7 @@ public struct Constants {
     public static let LOGIN_TO_TAB_SEGUE : String = "loginToTabSegue"
     public static let SIGN_UP_TO_TAB_SEGUE : String = "signUpToTabSegue"
     public static let SHOW_CARD_DETAIL_SEGUE : String = "showCardDetailSegue"
+    public static let SHOW_CARD_DETAIL_CONTAINER_SEGUE : String = "showCardDetailContainerSegue"
     
     // Images
     public static let CARDS_LOGO_IMAGE : String = "cards"

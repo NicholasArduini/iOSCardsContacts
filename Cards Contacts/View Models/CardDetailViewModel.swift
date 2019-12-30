@@ -19,8 +19,13 @@ class CardDetailViewModel : GenericTableViewDataSource {
     
     private var cardUid : String?
     
-    init (cardUid: String) {
-        self.cardUid = cardUid
+    init (cardUid: String, isMyProfile: Bool) {
+        self.cardUid = isMyProfile ? AuthService.getCurrentUserUID() : cardUid
+        updateCardDetails()
+    }
+    
+    init () {
+        self.cardUid = AuthService.getCurrentUserUID()
         updateCardDetails()
     }
     
