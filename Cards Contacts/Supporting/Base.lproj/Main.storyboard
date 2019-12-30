@@ -18,7 +18,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="QU2-4d-HDo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Find" image="magnifyingglass" catalog="system" id="gq6-Yb-UQa"/>
+                    <tabBarItem key="tabBarItem" title="Find" image="search" id="gq6-Yb-UQa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1k-q1-slA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -50,7 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ngg-Vg-XVO">
                         <rightBarButtonItems>
-                            <barButtonItem title="Profile" image="person.circle.fill" catalog="system" id="DCY-o9-Fk9"/>
+                            <barButtonItem title="Profile" image="profile" id="DCY-o9-Fk9"/>
                             <barButtonItem systemItem="compose" id="Geq-Bf-R55"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -579,7 +579,7 @@
         <scene sceneID="4UC-aP-Iy9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="L2V-MQ-K76" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cards" image="rectangle.stack.person.crop" catalog="system" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Cards" image="addressBook" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ysu-P5-ju1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -598,7 +598,7 @@
         <scene sceneID="APZ-hK-byM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QqG-8c-SSr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tto-yH-q3d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -615,11 +615,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addressBook" width="25" height="25"/>
         <image name="cards" width="594" height="185"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
-        <image name="person.circle" catalog="system" width="64" height="60"/>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="rectangle.stack.person.crop" catalog="system" width="64" height="60"/>
+        <image name="profile" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
         <image name="starOpen" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
