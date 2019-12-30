@@ -56,6 +56,19 @@ class AuthService {
         })
     }
     
+    func forgotPassword(email: String, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
+        Auth.auth().sendPasswordReset(withEmail: email, completion: { error in
+            if let error = error {
+                onFailure()
+                if let vc = self.vc {
+                    Alerter(vc: vc).presentAlert(withMessage: error.localizedDescription)
+                }
+            } else {
+                onSuccess()
+            }
+        })
+    }
+    
     func isLoggedIn(isLoggedIn: @escaping (Bool) -> ()) {
         Auth.auth().addStateDidChangeListener { auth, user in
             if(user != nil){
@@ -68,6 +81,15 @@ class AuthService {
     
     func isLoggedIn() -> Bool {
         return Auth.auth().currentUser != nil
+    }
+    
+    func logout(onSuccess: @escaping () -> ()) {
+        do {
+            try Auth.auth().signOut()
+            onSuccess()
+        } catch let error {
+            print(error)
+        }
     }
     
 }

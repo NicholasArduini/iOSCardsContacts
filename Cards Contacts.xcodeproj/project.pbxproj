@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D2A852F23B9BD090040DBDE /* CardDetailParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A852E23B9BD090040DBDE /* CardDetailParentViewController.swift */; };
+		5D2A853123B9D19A0040DBDE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */; };
 		5D3D235E22C0101C006B7459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D235D22C0101C006B7459 /* AppDelegate.swift */; };
 		5D3D236222C0101C006B7459 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D236122C0101C006B7459 /* ProfileViewController.swift */; };
 		5D3D236522C0101C006B7459 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D236322C0101C006B7459 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		0803D779143F206B35B6955B /* Pods_Cards_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cards_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		120E9978FC75120260C8CB9B /* Pods-Cards Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cards Contacts.debug.xcconfig"; path = "Target Support Files/Pods-Cards Contacts/Pods-Cards Contacts.debug.xcconfig"; sourceTree = "<group>"; };
 		5D2A852E23B9BD090040DBDE /* CardDetailParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailParentViewController.swift; sourceTree = "<group>"; };
+		5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5D3D235A22C0101C006B7459 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D3D235D22C0101C006B7459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D3D236122C0101C006B7459 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				5D3D237722C02084006B7459 /* SignUpViewController.swift */,
 				5D3D237322C01203006B7459 /* LoginViewController.swift */,
+				5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				5DFD77D523B2506D00C6EF1A /* AuthService.swift in Sources */,
 				5DA55BB723B256DB003CF582 /* Alerter.swift in Sources */,
 				5D7669D023B2BD0B00BF8BA5 /* TableViewDataSource.swift in Sources */,
+				5D2A853123B9D19A0040DBDE /* ForgotPasswordViewController.swift in Sources */,
 				5DA55BBC23B25DB6003CF582 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
