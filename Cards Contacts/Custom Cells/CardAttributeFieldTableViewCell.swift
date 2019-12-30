@@ -23,7 +23,7 @@ class CardAttributeFieldTableViewCell: UITableViewCell {
         self.fieldItem = fieldItem
         self.parentView = view
         self.actionPressed = actionPressed
-        fieldName.text = fieldItem.fieldName
+        fieldName.text = fieldItem.name
         actionButton.setTitle(fieldItem.value, for: .normal)
         
         actionButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(copyValuePressed)))

@@ -15,6 +15,8 @@ protocol CardDetailDelegte {
 class CardDetailViewModel : GenericTableViewDataSource {
     
     var delegate: CardDetailDelegte?
+    var cardsFieldTitles = [String]()
+    private var cardFieldItemsDict = [String: [FieldItem]]()
     private var cardAttributes = CardAttributes()
     
     private var cardUid : String?
@@ -30,18 +32,21 @@ class CardDetailViewModel : GenericTableViewDataSource {
     }
     
     func numberOfSections() -> Int {
-        return self.cardAttributes.fieldItemList.count
+        return self.cardsFieldTitles.count
     }
     
     func numberOfRows(_ section: Int) -> Int {
-        return self.cardAttributes.fieldItemList[section].fieldItems.count
+        let key = cardsFieldTitles[section]
+        if let value = cardFieldItemsDict[key] {
+            return value.count
+        }
+        return 0
     }
     
     func modelAt<FieldItem>(_ section: Int, _ index: Int) -> FieldItem {
-        let fieldItemList = self.cardAttributes.fieldItemList[section]
-        let fieldItem = fieldItemList.fieldItems[index]
-        
-        return fieldItem as! FieldItem
+        let key = cardsFieldTitles[section]
+        let values = cardFieldItemsDict[key]
+        return values?[index] as! FieldItem
     }
     
     func getCardAttributes() -> CardAttributes{
@@ -69,7 +74,39 @@ class CardDetailViewModel : GenericTableViewDataSource {
         let cardAttributes = storageService.retrieveObject(objectType: CardAttributes.self, with: predicate)
         if let firstCardAttributes = cardAttributes?.first {
             self.cardAttributes = CardAttributes(value: firstCardAttributes)
+            self.setupFieldSections()
             self.delegate?.cardDetailsUpdated()
         }
+    }
+    
+    private func setupFieldSections() {
+        // clear sections
+        cardsFieldTitles.removeAll()
+        cardFieldItemsDict.removeAll()
+        
+        /*
+        go through all field items, set title for type. if title hasn't been used before
+        create it with one entry, else append to existing
+         */
+        for fieldItem in cardAttributes.fieldItems {
+            let title = fieldItem.getSectionString()
+            if var fieldItems = cardFieldItemsDict[title] {
+                fieldItems.append(fieldItem)
+                cardFieldItemsDict[title] = fieldItems
+            } else {
+                cardFieldItemsDict[title] = [fieldItem]
+            }
+        }
+        
+        // sort titles
+        cardsFieldTitles = [String](cardFieldItemsDict.keys)
+        cardsFieldTitles = cardsFieldTitles.sorted(by: { $0 < $1 })
+        
+        // move other fields to end of list
+        if let otherIndex = cardsFieldTitles.firstIndex(of: FieldItem.OTHER_TITLE) {
+            let otherElement = cardsFieldTitles.remove(at: otherIndex)
+            cardsFieldTitles.append(otherElement)
+        }
+        
     }
 }

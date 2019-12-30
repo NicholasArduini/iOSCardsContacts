@@ -77,7 +77,7 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title = self.cardDetailViewModel.getCardAttributes().fieldItemList[section].fieldName
+        let title = self.cardDetailViewModel.cardsFieldTitles[section]
         let width = self.view.frame.size.width
         let view = Common.buildTableViewSectionHeader(title: title, height: SECTION_HEADER_HEIGHT, width: width, cornerRadius: 6)
         return view
