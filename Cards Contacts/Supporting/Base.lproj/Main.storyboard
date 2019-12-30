@@ -49,15 +49,12 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ngg-Vg-XVO">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="KSL-Pq-9xV">
+                        <barButtonItem key="leftBarButtonItem" image="logout" id="KSL-Pq-9xV">
                             <connections>
                                 <action selector="logoutButton:" destination="8rJ-Kc-sve" id="jyl-Ev-IxL"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Profile" image="profile" id="DCY-o9-Fk9"/>
-                            <barButtonItem systemItem="compose" id="Geq-Bf-R55"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Geq-Bf-R55"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -697,6 +694,7 @@
     <resources>
         <image name="addressBook" width="25" height="25"/>
         <image name="cards" width="594" height="185"/>
+        <image name="logout" width="25" height="25"/>
         <image name="profile" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
         <image name="starOpen" width="25" height="25"/>
