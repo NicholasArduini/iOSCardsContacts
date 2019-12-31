@@ -34,7 +34,7 @@ class AuthService {
                 onFailure()
                 if let error = error?.localizedDescription {
                     if let vc = self.vc {
-                        Alerter(vc: vc).presentAlert(withMessage: error)
+                        vc.presentAlert(withMessage: error)
                     }
                 }
             }
@@ -49,7 +49,7 @@ class AuthService {
                 onFailure()
                 if let error = error?.localizedDescription {
                     if let vc = self.vc {
-                        Alerter(vc: vc).presentAlert(withMessage: error)
+                        vc.presentAlert(withMessage: error)
                     }
                 }
             }
@@ -61,7 +61,7 @@ class AuthService {
             if let error = error {
                 onFailure()
                 if let vc = self.vc {
-                    Alerter(vc: vc).presentAlert(withMessage: error.localizedDescription)
+                    vc.presentAlert(withMessage: error.localizedDescription)
                 }
             } else {
                 onSuccess()

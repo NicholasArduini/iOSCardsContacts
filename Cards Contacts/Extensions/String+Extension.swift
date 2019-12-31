@@ -9,7 +9,25 @@
 import Foundation
 
 extension String {
+    
     func getInitials() -> String {
         return self.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+    }
+    
+    func filterOnlyNumbers() -> String {
+        return self.filter("0123456789.".contains)
+    }
+    
+    func formatAsPhoneNumber() ->String{
+        if(self.count >= 10){
+            let startIndex = self.index(self.startIndex, offsetBy: 3)
+            let middleStartIndex = self.index(self.startIndex, offsetBy: 3)
+            let middleEndIndex = self.index(self.endIndex, offsetBy: -4)
+            let range = middleStartIndex..<middleEndIndex
+            
+            return "(\(self[..<startIndex])) \(self[range]) \(self[middleEndIndex...])"
+        } else {
+            return self
+        }
     }
 }

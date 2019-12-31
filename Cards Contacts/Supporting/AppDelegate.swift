@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(!Reachability.isConnectedToNetwork()){
             DispatchQueue.main.async {
                 if let vc = self.window?.rootViewController {
-                    Alerter(vc: vc).presentAlert(withMessage: Constants.NOT_CONNECTED_TO_THE_INTERNET)
+                    vc.presentAlert(withMessage: Constants.NOT_CONNECTED_TO_THE_INTERNET)
                 }
             }
         }

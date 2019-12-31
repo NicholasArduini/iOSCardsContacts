@@ -80,7 +80,7 @@ public class FieldItem: Object, Decodable {
         value = try container.decode(String.self, forKey: .value)
         
         if type == .number {
-            value = Common.formatPhoneNumber(phoneNumber: value)
+            value = value.formatAsPhoneNumber()
         }
     }
     

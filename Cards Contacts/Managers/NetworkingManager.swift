@@ -1,8 +1,8 @@
 //
-//  CardsWebService.swift
+//  ApiManager.swift
 //  Cards Contacts
 //
-//  Created by Nicholas Arduini on 12/26/19.
+//  Created by Nicholas Arduini on 12/31/19.
 //  Copyright © 2019 Nicholas Arduini. All rights reserved.
 //
 
@@ -10,18 +10,15 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-class CardsWebService {
+class NetworkingManager {
     
-    public static let CARDS_LIST_COLLECTION_NAME = "cards-list"
-    public static let USER_CARDS_COLLECTION_NAME = "user-cards"
-    
-    let db : Firestore!
+    let db : Firestore
     
     init() {
         db = Firestore.firestore()
     }
     
-    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, documentName: String, completion: @escaping (T) -> ()) {
+    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, documentName: String, onSuccess: @escaping (T) -> (), onFailure: @escaping (String) -> ()) {
         let docRef = db.collection(collectionName).document(documentName)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -32,13 +29,16 @@ class CardsWebService {
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let decodedObj = try decoder.decode(objectType.self, from: json)
                         
-                        completion(decodedObj)
+                        onSuccess(decodedObj)
                     }
                 } catch {
+                    onFailure(error.localizedDescription)
                     print(error)
                 }
             } else {
-                print("Document does not exist")
+                let message = "Document does not exist"
+                onFailure(message)
+                print(message)
             }
         }
     }

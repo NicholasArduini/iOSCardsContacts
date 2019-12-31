@@ -65,10 +65,10 @@ class MyCardsViewModel : GenericTableViewDataSource {
     func updateCards () {
         self.retrieveCards()
         
-        CardsWebService().getDocument(objectType: CardSummaryList.self, collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME, documentName: AuthService.getCurrentUserUID()) { cardList in
+        CardsWebService().getCurrentUserCardList(onSuccess: { cardList in
             self.storeCards(cards: cardList.cards)
             self.retrieveCards()
-        }
+        }, onFailure: nil)
     }
     
     private func storeCards(cards: [CardSummaryItem]) {
@@ -79,8 +79,7 @@ class MyCardsViewModel : GenericTableViewDataSource {
     }
     
     private func retrieveCards() {
-        let storageService = StorageService()
-        let cards = storageService.retrieveObject(objectType: CardSummaryItem.self)
+        let cards = StorageService().retrieveObject(objectType: CardSummaryItem.self)
         if let cards = cards {
             let cardList = CardSummaryList(cards: Array(cards))
             self.unfilteredCardList = cardList

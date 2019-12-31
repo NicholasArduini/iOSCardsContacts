@@ -56,10 +56,10 @@ class CardDetailViewModel : GenericTableViewDataSource {
     func updateCardDetails () {
         self.retrieveCardDetails()
         if let cardUid = self.cardUid {
-            CardsWebService().getDocument(objectType: Card.self, collectionName: CardsWebService.USER_CARDS_COLLECTION_NAME, documentName: cardUid) { card in
+            CardsWebService().getUserCard(uid: cardUid, onSuccess: { card in
                 self.storeCardDetails(card: card)
                 self.retrieveCardDetails()
-            }
+            }, onFailure: nil)
         }
     }
     
@@ -69,9 +69,8 @@ class CardDetailViewModel : GenericTableViewDataSource {
     }
     
     private func retrieveCardDetails() {
-        let storageService = StorageService()
         let predicate = NSPredicate(format: "uid = %@", cardUid ?? "")
-        let card = storageService.retrieveObject(objectType: Card.self, with: predicate)
+        let card = StorageService().retrieveObject(objectType: Card.self, with: predicate)
         if let firstCard = card?.first {
             self.card = Card(value: firstCard)
             self.setupFieldSections()

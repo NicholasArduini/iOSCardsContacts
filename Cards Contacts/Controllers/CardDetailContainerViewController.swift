@@ -39,9 +39,9 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
             
             cell.setCell(fieldItem: model, view: self.view) { fieldItem in
                 if fieldItem.type == .number {
-                    Common.makeCall(vc: self, phoneNumber: fieldItem.value)
+                    ContactActions.makeCall(vc: self, phoneNumber: fieldItem.value)
                 } else if fieldItem.type == .email {
-                    Common.composeEmail(vc: self, email: fieldItem.value)
+                    ContactActions.composeEmail(vc: self, email: fieldItem.value)
                 }
             }
         }
