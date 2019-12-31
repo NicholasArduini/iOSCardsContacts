@@ -132,6 +132,50 @@
 			path = BrowseCardsTableViewCell;
 			sourceTree = "<group>";
 		};
+		5D2A854523BBC82D0040DBDE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5D2A853E23BB9ADC0040DBDE /* SearchUsersViewModel.swift */,
+				5D2A853C23BB98470040DBDE /* SearchUsersViewController.swift */,
+				5D2A854323BBBDB20040DBDE /* SearchDetailViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5D2A854623BBC8520040DBDE /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */,
+				5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		5D2A854723BBC86A0040DBDE /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				5D54F4C823B660B800B6B027 /* CardDetailContainerViewController.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		5D2A854823BBC8770040DBDE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5D3D236122C0101C006B7459 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5D2A854923BBC8B00040DBDE /* Card Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5D54F4D223B6C36300B6B027 /* CardDetailViewModel.swift */,
+				5D2A852E23B9BD090040DBDE /* CardDetailParentViewController.swift */,
+			);
+			path = "Card Detail";
+			sourceTree = "<group>";
+		};
 		5D3D235122C0101C006B7459 = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				5D54F4B623B40DCF00B6B027 /* Models */,
-				5D7669D123B2BD8700BF8BA5 /* View Models */,
 				5D7669CE23B2BCF000BF8BA5 /* Data Sources */,
 				5DA55BBF23B26579003CF582 /* Custom Cells */,
 				5DA55BBA23B25978003CF582 /* Controllers */,
@@ -196,16 +239,6 @@
 			path = "Data Sources";
 			sourceTree = "<group>";
 		};
-		5D7669D123B2BD8700BF8BA5 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */,
-				5D54F4D223B6C36300B6B027 /* CardDetailViewModel.swift */,
-				5D2A853E23BB9ADC0040DBDE /* SearchUsersViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		5DA55BB523B256B5003CF582 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,13 +253,12 @@
 		5DA55BBA23B25978003CF582 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5D2A854723BBC86A0040DBDE /* Containers */,
+				5D2A854623BBC8520040DBDE /* Browse */,
+				5D2A854923BBC8B00040DBDE /* Card Detail */,
+				5D2A854823BBC8770040DBDE /* Profile */,
+				5D2A854523BBC82D0040DBDE /* Search */,
 				5D54F4BB23B5AEDF00B6B027 /* Auth */,
-				5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */,
-				5D54F4C823B660B800B6B027 /* CardDetailContainerViewController.swift */,
-				5D2A852E23B9BD090040DBDE /* CardDetailParentViewController.swift */,
-				5D3D236122C0101C006B7459 /* ProfileViewController.swift */,
-				5D2A853C23BB98470040DBDE /* SearchUsersViewController.swift */,
-				5D2A854323BBBDB20040DBDE /* SearchDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
