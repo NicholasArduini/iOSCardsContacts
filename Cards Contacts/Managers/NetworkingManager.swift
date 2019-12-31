@@ -42,4 +42,33 @@ class NetworkingManager {
             }
         }
     }
+    
+    func searchCollection<T : Decodable>(objectType: T.Type, collectionName: String, searchField: String, searchText: String, onSuccess: @escaping ([T]) -> (), onFailure: @escaping (String) -> ()) {
+        let docRef = db.collection(collectionName).whereField(searchField, isGreaterThanOrEqualTo: searchText).whereField(searchField, isLessThanOrEqualTo: searchText + "\u{f8ff}")
+        
+        docRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                onFailure(error.localizedDescription)
+            } else {
+                var objArray = [T]()
+                for document in querySnapshot!.documents {
+                    do {
+                        let json = try JSONSerialization.data(withJSONObject:  document.data())
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let decodedObj = try decoder.decode(objectType.self, from: json)
+                        objArray.append(decodedObj)
+                        
+                    } catch {
+                        onFailure(error.localizedDescription)
+                        print(error)
+                        return
+                    }
+                }
+                
+                onSuccess(objArray)
+            }
+        }
+    }
 }

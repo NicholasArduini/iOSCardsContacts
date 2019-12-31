@@ -13,7 +13,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     private let SECTION_HEADER_HEIGHT : CGFloat = 30
     
     private var myCardsViewModel = MyCardsViewModel()
-    private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,MyCardsViewModel,CardSummaryItem>!
+    private var datasource: TableViewDataSource<BrowseCardsTableViewCell,MyCardsViewModel,CardSummaryItem>!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
@@ -25,10 +25,11 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         self.setupNavBar()
     
         self.myCardsViewModel.delegate = self
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.MY_CARDS_TABLE_CELL, viewModel: self.myCardsViewModel) { cell, model in
-            let cell: BrowseMyCardsTableViewCell = cell
+        self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, viewModel: self.myCardsViewModel) { cell, model in
+            let cell: BrowseCardsTableViewCell = cell
             cell.setCell(card: model)
         }
+        self.tableView.register(UINib(nibName: Constants.BROWSE_CARDS_TABLE_CELL_NIB, bundle: nil), forCellReuseIdentifier: Constants.BROWSE_CARDS_TABLE_CELL)
         self.tableView.dataSource = self.datasource
         self.tableView.delegate = self
     }

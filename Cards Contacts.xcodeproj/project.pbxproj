@@ -11,6 +11,10 @@
 		5D2A853123B9D19A0040DBDE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */; };
 		5D2A853423BB121D0040DBDE /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853323BB121D0040DBDE /* NetworkingManager.swift */; };
 		5D2A853923BB1A3B0040DBDE /* ContactActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853823BB1A3B0040DBDE /* ContactActions.swift */; };
+		5D2A853D23BB98470040DBDE /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853C23BB98470040DBDE /* SearchUsersViewController.swift */; };
+		5D2A853F23BB9ADC0040DBDE /* SearchUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853E23BB9ADC0040DBDE /* SearchUsersViewModel.swift */; };
+		5D2A854123BBB6CC0040DBDE /* BrowseCardsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2A854023BBB6CC0040DBDE /* BrowseCardsTableViewCell.xib */; };
+		5D2A854423BBBDB20040DBDE /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A854323BBBDB20040DBDE /* SearchDetailViewController.swift */; };
 		5D3D235E22C0101C006B7459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D235D22C0101C006B7459 /* AppDelegate.swift */; };
 		5D3D236222C0101C006B7459 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D236122C0101C006B7459 /* ProfileViewController.swift */; };
 		5D3D236522C0101C006B7459 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D236322C0101C006B7459 /* Main.storyboard */; };
@@ -22,7 +26,7 @@
 		5D3D237C22C02F88006B7459 /* BrowseMyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */; };
 		5D54F4B823B40DEE00B6B027 /* CardSummaryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4B723B40DEE00B6B027 /* CardSummaryList.swift */; };
 		5D54F4BA23B50A3E00B6B027 /* CardsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */; };
-		5D54F4BD23B5BDA600B6B027 /* BrowseMyCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4BC23B5BDA600B6B027 /* BrowseMyCardsTableViewCell.swift */; };
+		5D54F4BD23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4BC23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift */; };
 		5D54F4BF23B5C0C600B6B027 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4BE23B5C0C600B6B027 /* UIImage+Extension.swift */; };
 		5D54F4C123B5C91C00B6B027 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4C023B5C91C00B6B027 /* String+Extension.swift */; };
 		5D54F4C323B5DAD300B6B027 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4C223B5DAD300B6B027 /* UIViewController+Extension.swift */; };
@@ -51,6 +55,10 @@
 		5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5D2A853323BB121D0040DBDE /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		5D2A853823BB1A3B0040DBDE /* ContactActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactActions.swift; sourceTree = "<group>"; };
+		5D2A853C23BB98470040DBDE /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
+		5D2A853E23BB9ADC0040DBDE /* SearchUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewModel.swift; sourceTree = "<group>"; };
+		5D2A854023BBB6CC0040DBDE /* BrowseCardsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowseCardsTableViewCell.xib; sourceTree = "<group>"; };
+		5D2A854323BBBDB20040DBDE /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		5D3D235A22C0101C006B7459 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D3D235D22C0101C006B7459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D3D236122C0101C006B7459 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +72,7 @@
 		5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseMyCardsViewController.swift; sourceTree = "<group>"; };
 		5D54F4B723B40DEE00B6B027 /* CardSummaryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSummaryList.swift; sourceTree = "<group>"; };
 		5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsWebService.swift; sourceTree = "<group>"; };
-		5D54F4BC23B5BDA600B6B027 /* BrowseMyCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseMyCardsTableViewCell.swift; sourceTree = "<group>"; };
+		5D54F4BC23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCardsTableViewCell.swift; sourceTree = "<group>"; };
 		5D54F4BE23B5C0C600B6B027 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		5D54F4C023B5C91C00B6B027 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5D54F4C223B5DAD300B6B027 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -113,6 +121,15 @@
 				5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */,
 			);
 			path = "Web Services";
+			sourceTree = "<group>";
+		};
+		5D2A854223BBBBBF0040DBDE /* BrowseCardsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5D54F4BC23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift */,
+				5D2A854023BBB6CC0040DBDE /* BrowseCardsTableViewCell.xib */,
+			);
+			path = BrowseCardsTableViewCell;
 			sourceTree = "<group>";
 		};
 		5D3D235122C0101C006B7459 = {
@@ -184,6 +201,7 @@
 			children = (
 				5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */,
 				5D54F4D223B6C36300B6B027 /* CardDetailViewModel.swift */,
+				5D2A853E23BB9ADC0040DBDE /* SearchUsersViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -207,6 +225,8 @@
 				5D54F4C823B660B800B6B027 /* CardDetailContainerViewController.swift */,
 				5D2A852E23B9BD090040DBDE /* CardDetailParentViewController.swift */,
 				5D3D236122C0101C006B7459 /* ProfileViewController.swift */,
+				5D2A853C23BB98470040DBDE /* SearchUsersViewController.swift */,
+				5D2A854323BBBDB20040DBDE /* SearchDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -214,7 +234,7 @@
 		5DA55BBF23B26579003CF582 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5D54F4BC23B5BDA600B6B027 /* BrowseMyCardsTableViewCell.swift */,
+				5D2A854223BBBBBF0040DBDE /* BrowseCardsTableViewCell */,
 				5D54F4CE23B6BBA300B6B027 /* CardAttributeFieldTableViewCell.swift */,
 			);
 			path = "Custom Cells";
@@ -334,6 +354,7 @@
 				5D3D236A22C01021006B7459 /* LaunchScreen.storyboard in Resources */,
 				5D54F4D923B8F52600B6B027 /* GoogleService-Info.plist in Resources */,
 				5D3D236722C01021006B7459 /* Assets.xcassets in Resources */,
+				5D2A854123BBB6CC0040DBDE /* BrowseCardsTableViewCell.xib in Resources */,
 				5D3D236522C0101C006B7459 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,16 +410,18 @@
 			files = (
 				5D54F4CB23B67B2A00B6B027 /* Card.swift in Sources */,
 				5D2A852F23B9BD090040DBDE /* CardDetailParentViewController.swift in Sources */,
-				5D54F4BD23B5BDA600B6B027 /* BrowseMyCardsTableViewCell.swift in Sources */,
+				5D54F4BD23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift in Sources */,
 				5DA55BBE23B25DE4003CF582 /* UITextField+Extension.swift in Sources */,
 				5D3D237C22C02F88006B7459 /* BrowseMyCardsViewController.swift in Sources */,
 				5D54F4C123B5C91C00B6B027 /* String+Extension.swift in Sources */,
 				5D54F4CF23B6BBA300B6B027 /* CardAttributeFieldTableViewCell.swift in Sources */,
 				5D54F4BF23B5C0C600B6B027 /* UIImage+Extension.swift in Sources */,
 				5D54F4D323B6C36300B6B027 /* CardDetailViewModel.swift in Sources */,
+				5D2A853F23BB9ADC0040DBDE /* SearchUsersViewModel.swift in Sources */,
 				5D54F4B823B40DEE00B6B027 /* CardSummaryList.swift in Sources */,
 				5D3D237822C02084006B7459 /* SignUpViewController.swift in Sources */,
 				5D3D236222C0101C006B7459 /* ProfileViewController.swift in Sources */,
+				5D2A853D23BB98470040DBDE /* SearchUsersViewController.swift in Sources */,
 				5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */,
 				5D54F4D723B7F48800B6B027 /* UIView+Extension.swift in Sources */,
 				5D54F4BA23B50A3E00B6B027 /* CardsWebService.swift in Sources */,
@@ -410,6 +433,7 @@
 				5D2A853923BB1A3B0040DBDE /* ContactActions.swift in Sources */,
 				5D54F4C523B651DE00B6B027 /* StorageService.swift in Sources */,
 				5D7669D323B2BDB400BF8BA5 /* MyCardsViewModel.swift in Sources */,
+				5D2A854423BBBDB20040DBDE /* SearchDetailViewController.swift in Sources */,
 				5D2A853423BB121D0040DBDE /* NetworkingManager.swift in Sources */,
 				5DA55BB923B25895003CF582 /* Constants.swift in Sources */,
 				5D3D237422C01203006B7459 /* LoginViewController.swift in Sources */,

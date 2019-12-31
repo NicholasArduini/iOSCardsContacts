@@ -18,6 +18,7 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var followRequestButton: UIButton!
     
     var uid: String?
     var isMyProfile = false
@@ -35,8 +36,7 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
             self.cardDetailViewModel = CardDetailViewModel()
         }
         
-        self.cleaUI()
-        self.showSpinner(onView: self.view)
+        self.setupUI()
         
         self.cardDetailViewModel.delegate = self
         self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, viewModel: self.cardDetailViewModel) { cell, model in
@@ -52,6 +52,12 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
         }
         self.tableView.dataSource = self.datasource
         self.tableView.delegate = self
+    }
+    
+    func setupUI() {
+        cleaUI()
+        self.showSpinner(onView: self.view)
+        self.followRequestButton.makeRounded(radius: 8)
     }
     
     func cleaUI() {

@@ -48,6 +48,10 @@ extension UIButton {
         self.layer.borderColor = UIColor.clear.cgColor
     }
     
+    func makeRounded(radius: CGFloat) {
+        self.layer.cornerRadius = radius
+    }
+    
     func loadingIndicator(_ show: Bool) {
         let tag = 808404
         if show {

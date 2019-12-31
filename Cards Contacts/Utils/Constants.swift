@@ -19,14 +19,19 @@ public struct Constants {
     public static let COPIED : String = "Copied!"
     
     // View Cells
-    public static let MY_CARDS_TABLE_CELL : String = "myCardsTableCell"
+    public static let BROWSE_CARDS_TABLE_CELL : String = "browseCardsTableCell"
     public static let CARD_DETAIL_TABLE_CELL : String = "cardDetailTableCell"
+    
+    // NIBs
+    public static let BROWSE_CARDS_TABLE_CELL_NIB : String = "BrowseCardsTableViewCell"
     
     // Segues
     public static let LOGIN_TO_TAB_SEGUE : String = "loginToTabSegue"
     public static let SIGN_UP_TO_TAB_SEGUE : String = "signUpToTabSegue"
     public static let SHOW_CARD_DETAIL_SEGUE : String = "showCardDetailSegue"
+    public static let SHOW_CARD_SEARCH_DETAIL_SEGUE : String = "showCardSearchDetailSegue"
     public static let SHOW_CARD_DETAIL_CONTAINER_SEGUE : String = "showCardDetailContainerSegue"
+    public static let SHOW_CARD_SEARCH_DETAIL_CONTAINER_SEGUE : String = "showCardSearchDetailContainerSegue"
     
     // Images
     public static let CARDS_LOGO_IMAGE : String = "cards"

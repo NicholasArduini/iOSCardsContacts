@@ -38,6 +38,28 @@ class CardsWebService {
         self.networkingManager.getDocument(objectType: Card.self,
                                            collectionName: USER_CARDS_COLLECTION_NAME,
                                            documentName: uid,
+        onSuccess: { cards in
+            onSuccess(cards)
+        },
+        onFailure: { errorString in
+            if let onFailure = onFailure {
+                onFailure(errorString)
+            }
+        })
+    }
+    
+    func searchUserCards(searchText: String,
+                     onSuccess: @escaping ([Card]) -> (),
+                     onFailure: ((String) -> ())?) {
+        
+        if searchText.count <= 0 {
+            onSuccess([])
+            return
+        }
+        
+        self.networkingManager.searchCollection(objectType: Card.self,
+                                           collectionName: USER_CARDS_COLLECTION_NAME,
+                                           searchField: "name", searchText: searchText,
         onSuccess: { card in
             onSuccess(card)
         },
@@ -46,5 +68,11 @@ class CardsWebService {
                 onFailure(errorString)
             }
         })
+    }
+    
+    func followRequestUser(uid: String,
+                     onSuccess: @escaping ([Card]) -> (),
+                     onFailure: ((String) -> ())?) {
+        
     }
 }
