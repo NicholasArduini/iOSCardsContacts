@@ -49,12 +49,14 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ngg-Vg-XVO">
-                        <barButtonItem key="leftBarButtonItem" image="logout" id="KSL-Pq-9xV">
-                            <connections>
-                                <action selector="logoutButton:" destination="8rJ-Kc-sve" id="jyl-Ev-IxL"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Geq-Bf-R55"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="logout" id="KSL-Pq-9xV">
+                                <connections>
+                                    <action selector="logoutButton:" destination="8rJ-Kc-sve" id="jyl-Ev-IxL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="Geq-Bf-R55"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -165,7 +167,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UlY-0k-Edy"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8Aa-gU-zQR"/>
+                    <navigationItem key="navigationItem" id="8Aa-gU-zQR">
+                        <barButtonItem key="rightBarButtonItem" title="Favourite" image="starOpen" id="5U8-aE-BTh">
+                            <connections>
+                                <action selector="favouriteButton:" destination="Col-wq-631" id="xO8-hC-QP5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="favouriteButton" destination="5U8-aE-BTh" id="DUf-uc-oOq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCj-Ev-1r2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
