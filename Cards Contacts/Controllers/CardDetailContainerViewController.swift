@@ -11,7 +11,7 @@ import UIKit
 import MessageUI
 
 class CardDetailContainerViewController: UIViewController, UITableViewDelegate, CardDetailDelegte, MFMailComposeViewControllerDelegate {
-    
+
     private let SECTION_HEADER_HEIGHT : CGFloat = 40
     
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +24,8 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     private var cardDetailViewModel : CardDetailViewModel!
     private var datasource: TableViewDataSource<CardAttributeFieldTableViewCell,CardDetailViewModel,FieldItem>!
     
+    var spinner = UIActivityIndicatorView(style: .whiteLarge)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,9 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
         } else {
             self.cardDetailViewModel = CardDetailViewModel()
         }
+        
+        self.cleaUI()
+        self.showSpinner(onView: self.view)
         
         self.cardDetailViewModel.delegate = self
         self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, viewModel: self.cardDetailViewModel) { cell, model in
@@ -47,6 +52,11 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
         }
         self.tableView.dataSource = self.datasource
         self.tableView.delegate = self
+    }
+    
+    func cleaUI() {
+        nameLabel.text = nil
+        usernameLabel.text = nil
     }
     
     func setupHeader() {
@@ -68,6 +78,12 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
         } else {
             usernameLabel.isHidden = true
         }
+        self.removeSpinner()
+    }
+    
+    func failureUpdatingCard(message: String) {
+        self.removeSpinner()
+        self.presentAlert(withMessage: message)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

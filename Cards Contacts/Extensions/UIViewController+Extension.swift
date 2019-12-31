@@ -8,6 +8,8 @@
 
 import UIKit
 
+var vcSpinnerView : UIView?
+
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {
@@ -30,5 +32,26 @@ extension UIViewController {
         alert.view.tintColor = UIColor.themeColor
         alert.addAction(UIAlertAction(title: Constants.OKAY, style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        let indicatorView = UIActivityIndicatorView.init(style: .whiteLarge)
+        indicatorView.startAnimating()
+        indicatorView.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(indicatorView)
+            onView.addSubview(spinnerView)
+        }
+        
+        vcSpinnerView = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vcSpinnerView?.removeFromSuperview()
+            vcSpinnerView = nil
+        }
     }
 }

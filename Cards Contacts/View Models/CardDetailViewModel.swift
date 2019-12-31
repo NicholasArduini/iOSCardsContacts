@@ -10,6 +10,7 @@ import Foundation
 
 protocol CardDetailDelegte {
     func cardDetailsUpdated()
+    func failureUpdatingCard(message: String)
 }
 
 class CardDetailViewModel : GenericTableViewDataSource {
@@ -59,7 +60,9 @@ class CardDetailViewModel : GenericTableViewDataSource {
             CardsWebService().getUserCard(uid: cardUid, onSuccess: { card in
                 self.storeCardDetails(card: card)
                 self.retrieveCardDetails()
-            }, onFailure: nil)
+            }, onFailure: { message in
+                self.delegate?.failureUpdatingCard(message: message)
+            })
         }
     }
     
