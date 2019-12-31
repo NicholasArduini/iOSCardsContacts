@@ -19,7 +19,7 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    var card : Card?
+    var uid: String?
     var isMyProfile = false
     private var cardDetailViewModel : CardDetailViewModel!
     private var datasource: TableViewDataSource<CardAttributeFieldTableViewCell,CardDetailViewModel,FieldItem>!
@@ -27,10 +27,8 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupHeader()
-        
-        if let card = card {
-            self.cardDetailViewModel = CardDetailViewModel(cardUid: card.uid, isMyProfile: self.isMyProfile)
+        if let uid = uid {
+            self.cardDetailViewModel = CardDetailViewModel(cardUid: uid, isMyProfile: self.isMyProfile)
         } else {
             self.cardDetailViewModel = CardDetailViewModel()
         }
@@ -52,19 +50,19 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
     }
     
     func setupHeader() {
-        if let card = self.card {
-            if let image = UIImage.generateCircleImageWithText(text: card.name.getInitials(), size: 120) {
-                imageView.image = image
-                imageView.contentMode = .scaleAspectFill
-                imageView.clipsToBounds = true
-            }
-            nameLabel.text = card.name
+        let card = self.cardDetailViewModel.getCard()
+        if let image = UIImage.generateCircleImageWithText(text: card.name.getInitials(), size: 120) {
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
         }
+        nameLabel.text = card.name
     }
     
     func cardDetailsUpdated() {
         self.tableView.reloadData()
-        if let altName = cardDetailViewModel.getCardAttributes().altName {
+        self.setupHeader()
+        if let altName = cardDetailViewModel.getCard().altName {
             usernameLabel.text = altName
             usernameLabel.isHidden = false
         } else {

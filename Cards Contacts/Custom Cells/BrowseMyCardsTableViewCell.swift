@@ -13,7 +13,7 @@ class BrowseMyCardsTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    func setCell(card: Card) {
+    func setCell(card: CardSummaryItem) {
         nameLabel.text = card.name
 
         if let image = UIImage.generateCircleImageWithText(text: card.name.getInitials(), size: 48) {

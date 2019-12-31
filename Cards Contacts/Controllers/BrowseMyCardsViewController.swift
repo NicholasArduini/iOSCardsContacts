@@ -13,7 +13,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     private let SECTION_HEADER_HEIGHT : CGFloat = 30
     
     private var myCardsViewModel = MyCardsViewModel()
-    private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,MyCardsViewModel,Card>!
+    private var datasource: TableViewDataSource<BrowseMyCardsTableViewCell,MyCardsViewModel,CardSummaryItem>!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
@@ -86,7 +86,10 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         
         if segue.identifier == Constants.SHOW_CARD_DETAIL_SEGUE {
             if let vc = segue.destination as? CardDetailParentViewController {
-                vc.card = sender as? Card
+                let card = sender as? CardSummaryItem
+                if let card = card {
+                    vc.uid = card.uid
+                }
             }
         }
     }

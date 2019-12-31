@@ -17,7 +17,7 @@ class CardDetailViewModel : GenericTableViewDataSource {
     var delegate: CardDetailDelegte?
     var cardsFieldTitles = [String]()
     private var cardFieldItemsDict = [String: [FieldItem]]()
-    private var cardAttributes = CardAttributes()
+    private var card = Card()
     
     private var cardUid : String?
     
@@ -49,31 +49,31 @@ class CardDetailViewModel : GenericTableViewDataSource {
         return values?[index] as! FieldItem
     }
     
-    func getCardAttributes() -> CardAttributes{
-        return cardAttributes
+    func getCard() -> Card{
+        return card
     }
     
     func updateCardDetails () {
         self.retrieveCardDetails()
         if let cardUid = self.cardUid {
-            CardsWebService().getDocument(objectType: CardAttributes.self, collectionName: CardsWebService.USER_CARDS_COLLECTION_NAME, documentName: cardUid) { cardAttributes in
-                self.storeCardDetails(cardAttrs: cardAttributes)
+            CardsWebService().getDocument(objectType: Card.self, collectionName: CardsWebService.USER_CARDS_COLLECTION_NAME, documentName: cardUid) { card in
+                self.storeCardDetails(card: card)
                 self.retrieveCardDetails()
             }
         }
     }
     
-    private func storeCardDetails(cardAttrs: CardAttributes) {
+    private func storeCardDetails(card: Card) {
         let storageService = StorageService()
-        storageService.storeObject(object: cardAttrs)
+        storageService.storeObject(object: card)
     }
     
     private func retrieveCardDetails() {
         let storageService = StorageService()
         let predicate = NSPredicate(format: "uid = %@", cardUid ?? "")
-        let cardAttributes = storageService.retrieveObject(objectType: CardAttributes.self, with: predicate)
-        if let firstCardAttributes = cardAttributes?.first {
-            self.cardAttributes = CardAttributes(value: firstCardAttributes)
+        let card = storageService.retrieveObject(objectType: Card.self, with: predicate)
+        if let firstCard = card?.first {
+            self.card = Card(value: firstCard)
             self.setupFieldSections()
             self.delegate?.cardDetailsUpdated()
         }
@@ -88,7 +88,7 @@ class CardDetailViewModel : GenericTableViewDataSource {
         go through all field items, set title for type. if title hasn't been used before
         create it with one entry, else append to existing
          */
-        for fieldItem in cardAttributes.fieldItems {
+        for fieldItem in card.fieldItems {
             let title = fieldItem.getSectionString()
             if var fieldItems = cardFieldItemsDict[title] {
                 fieldItems.append(fieldItem)

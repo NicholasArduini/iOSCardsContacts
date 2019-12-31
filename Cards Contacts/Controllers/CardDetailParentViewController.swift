@@ -10,7 +10,7 @@ import UIKit
 
 class CardDetailParentViewController: UIViewController {
     
-    var card : Card?
+    var uid : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class CardDetailParentViewController: UIViewController {
         
         if segue.identifier == Constants.SHOW_CARD_DETAIL_CONTAINER_SEGUE {
             if let vc = segue.destination as? CardDetailContainerViewController {
-                vc.card = self.card
+                vc.uid = self.uid
                 vc.isMyProfile = false
             }
         }

@@ -18,9 +18,9 @@ class MyCardsViewModel : GenericTableViewDataSource {
     var delegate: MyCardsDelegte?
     
     var cardsSectionTitles = [String]()
-    private var cardsDictionary = [String: [Card]]()
-    private var filteredCardList = CardList()
-    private var unfilteredCardList = CardList()
+    private var cardsDictionary = [String: [CardSummaryItem]]()
+    private var filteredCardList = CardSummaryList()
+    private var unfilteredCardList = CardSummaryList()
     private var isFavouriteSelected = false
     
     init () {
@@ -47,7 +47,7 @@ class MyCardsViewModel : GenericTableViewDataSource {
         return getCard(for: IndexPath(row: index, section: section)) as! Card
     }
     
-    func getCard(for indexPath: IndexPath) -> Card? {
+    func getCard(for indexPath: IndexPath) -> CardSummaryItem? {
         let cardKey = cardsSectionTitles[indexPath.section]
         let cardValues = cardsDictionary[cardKey]
         return cardValues?[indexPath.row]
@@ -65,13 +65,13 @@ class MyCardsViewModel : GenericTableViewDataSource {
     func updateCards () {
         self.retrieveCards()
         
-        CardsWebService().getDocument(objectType: CardList.self, collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME, documentName: AuthService.getCurrentUserUID()) { cardList in
+        CardsWebService().getDocument(objectType: CardSummaryList.self, collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME, documentName: AuthService.getCurrentUserUID()) { cardList in
             self.storeCards(cards: cardList.cards)
             self.retrieveCards()
         }
     }
     
-    private func storeCards(cards: [Card]) {
+    private func storeCards(cards: [CardSummaryItem]) {
         let storageService = StorageService()
         cards.forEach { card in
             storageService.storeObject(object: card)
@@ -80,9 +80,9 @@ class MyCardsViewModel : GenericTableViewDataSource {
     
     private func retrieveCards() {
         let storageService = StorageService()
-        let cards = storageService.retrieveObject(objectType: Card.self)
+        let cards = storageService.retrieveObject(objectType: CardSummaryItem.self)
         if let cards = cards {
-            let cardList = CardList(cards: Array(cards))
+            let cardList = CardSummaryList(cards: Array(cards))
             self.unfilteredCardList = cardList
             self.filteredCardList = cardList
             setupSections()
