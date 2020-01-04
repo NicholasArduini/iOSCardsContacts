@@ -57,11 +57,13 @@ class CardDetailViewModel : GenericTableViewDataSource {
     func updateCardDetails () {
         self.retrieveCardDetails()
         if let cardUid = self.cardUid {
-            CardsWebService().getUserCard(uid: cardUid, onSuccess: { card in
-                self.storeCardDetails(card: card)
-                self.retrieveCardDetails()
-            }, onFailure: { message in
-                self.delegate?.failureUpdatingCard(message: message)
+            CardsWebService().getUserCard(uid: cardUid, complete: { card, error in
+                if let card = card {
+                    self.storeCardDetails(card: card)
+                    self.retrieveCardDetails()
+                } else if let error = error {
+                    self.delegate?.failureUpdatingCard(message: error.localizedDescription)
+                }
             })
         }
     }

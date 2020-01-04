@@ -18,16 +18,36 @@ struct CardSummaryList: Decodable {
     }
 }
 
-public class CardSummaryItem: Object, Decodable {
+public class CardSummaryItem: Object, Codable, NSCopying {
     
     @objc dynamic var name: String = ""
-    @objc dynamic var number: String = ""
     @objc dynamic var uid: String = ""
+    @objc dynamic var isFavourite: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case name
-        case number
         case uid
+        case isFavourite
+    }
+    
+    func flipFavourite() {
+        StorageService().writeData {
+            isFavourite = !isFavourite
+        }
+    }
+    
+    init(name: String, uid: String, isFavourite: Bool) {
+        self.name = name
+        self.uid = uid
+        self.isFavourite = isFavourite
+    }
+
+    required init() {
+    }
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = CardSummaryItem(name: name, uid: uid, isFavourite: isFavourite)
+        return copy
     }
     
     override public static func primaryKey() -> String? {

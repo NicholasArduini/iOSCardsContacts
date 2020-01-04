@@ -89,7 +89,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
             if let vc = segue.destination as? CardDetailParentViewController {
                 let card = sender as? CardSummaryItem
                 if let card = card {
-                    vc.uid = card.uid
+                    vc.cardSummaryItem = card
                 }
             }
         }

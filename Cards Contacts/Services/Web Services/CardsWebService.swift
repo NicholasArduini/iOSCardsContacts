@@ -13,66 +13,65 @@ class CardsWebService {
     private let CARDS_LIST_COLLECTION_NAME = "cards-list"
     private let USER_CARDS_COLLECTION_NAME = "user-cards"
     
-    let networkingManager = NetworkingManager()
+    let firebaseManager = FirebaseManager()
     
-    func getCurrentUserCardList(onSuccess: @escaping (CardSummaryList) -> (),
-                                onFailure: ((String) -> ())?) {
+    func getCurrentUserCardList(complete: @escaping (CardSummaryList?, Error?) -> ()) {
         
-        self.networkingManager.getDocument(objectType: CardSummaryList.self,
+        self.firebaseManager.getDocument(objectType: CardSummaryList.self,
                                            collectionName: CARDS_LIST_COLLECTION_NAME,
                                            documentName: AuthService.getCurrentUserUID(),
-        onSuccess: { cardList in
-            onSuccess(cardList)
-        },
-        onFailure: { errorString in
-            if let onFailure = onFailure {
-                onFailure(errorString)
-            }
+        complete: { cardList, error in
+            complete(cardList, error)
         })
     }
     
     func getUserCard(uid: String,
-                     onSuccess: @escaping (Card) -> (),
-                     onFailure: ((String) -> ())?) {
+                     complete: @escaping (Card?, Error?) -> ()) {
         
-        self.networkingManager.getDocument(objectType: Card.self,
+        self.firebaseManager.getDocument(objectType: Card.self,
                                            collectionName: USER_CARDS_COLLECTION_NAME,
                                            documentName: uid,
-        onSuccess: { cards in
-            onSuccess(cards)
-        },
-        onFailure: { errorString in
-            if let onFailure = onFailure {
-                onFailure(errorString)
-            }
+        complete: { cards, error in
+            complete(cards, error)
         })
     }
     
     func searchUserCards(searchText: String,
-                     onSuccess: @escaping ([Card]) -> (),
-                     onFailure: ((String) -> ())?) {
+                     complete: @escaping ([Card]?, Error?) -> ()) {
         
         if searchText.count <= 0 {
-            onSuccess([])
+            complete([], nil)
             return
         }
         
-        self.networkingManager.searchCollection(objectType: Card.self,
+        self.firebaseManager.searchCollection(objectType: Card.self,
                                            collectionName: USER_CARDS_COLLECTION_NAME,
                                            searchField: "name", searchText: searchText,
-        onSuccess: { card in
-            onSuccess(card)
-        },
-        onFailure: { errorString in
-            if let onFailure = onFailure {
-                onFailure(errorString)
-            }
+        complete: { card, error in
+            complete(card, error)
         })
     }
     
-    func followRequestUser(uid: String,
-                     onSuccess: @escaping ([Card]) -> (),
-                     onFailure: ((String) -> ())?) {
+    func favouriteCard(card: CardSummaryItem,
+                       complete: (@escaping (CardSummaryItem?, Error?) -> ())) {
         
+        let oldCard = card.copy() as! CardSummaryItem
+        let newCard = card
+        newCard.flipFavourite()
+        
+        if let oldCardDict = oldCard.dict, let newCardDict = newCard.dict {
+            self.firebaseManager.updateArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+                                           documentName: AuthService.getCurrentUserUID(),
+                                           arrayName: "cards",
+                                           oldFields: oldCardDict,
+                                           newFields: newCardDict,
+            complete: { error in
+                if let error = error {
+                    complete(nil, error)
+                } else {
+                    complete(newCard, nil)
+                }
+            })
+        }
     }
 }

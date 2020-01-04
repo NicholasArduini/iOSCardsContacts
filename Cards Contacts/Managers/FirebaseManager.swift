@@ -1,5 +1,5 @@
 //
-//  ApiManager.swift
+//  FirebaseManager.swift
 //  Cards Contacts
 //
 //  Created by Nicholas Arduini on 12/31/19.
@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-class NetworkingManager {
+class FirebaseManager {
     
     let db : Firestore
     
@@ -18,7 +18,7 @@ class NetworkingManager {
         db = Firestore.firestore()
     }
     
-    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, documentName: String, onSuccess: @escaping (T) -> (), onFailure: @escaping (String) -> ()) {
+    func getDocument<T : Decodable>(objectType: T.Type, collectionName: String, documentName: String, complete: @escaping (T?, Error?) -> ()) {
         let docRef = db.collection(collectionName).document(documentName)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -29,27 +29,26 @@ class NetworkingManager {
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let decodedObj = try decoder.decode(objectType.self, from: json)
                         
-                        onSuccess(decodedObj)
+                        complete(decodedObj, nil)
                     }
                 } catch {
-                    onFailure(error.localizedDescription)
+                    complete(nil, error)
                     print(error)
                 }
             } else {
-                let message = "Document does not exist"
-                onFailure(message)
-                print(message)
+                let error = NSError(domain:"Document does not exist", code:0, userInfo:nil)
+                complete(nil, error)
             }
         }
     }
     
-    func searchCollection<T : Decodable>(objectType: T.Type, collectionName: String, searchField: String, searchText: String, onSuccess: @escaping ([T]) -> (), onFailure: @escaping (String) -> ()) {
+    func searchCollection<T : Decodable>(objectType: T.Type, collectionName: String, searchField: String, searchText: String, complete: @escaping ([T]?, Error?) -> ()) {
         let docRef = db.collection(collectionName).whereField(searchField, isGreaterThanOrEqualTo: searchText).whereField(searchField, isLessThanOrEqualTo: searchText + "\u{f8ff}")
         
         docRef.getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
-                onFailure(error.localizedDescription)
+                complete(nil, error)
             } else {
                 var objArray = [T]()
                 for document in querySnapshot!.documents {
@@ -61,14 +60,39 @@ class NetworkingManager {
                         objArray.append(decodedObj)
                         
                     } catch {
-                        onFailure(error.localizedDescription)
+                        complete(nil, error)
                         print(error)
                         return
                     }
                 }
-                
-                onSuccess(objArray)
+                complete(objArray, nil)
             }
         }
     }
+    
+    
+    // limitations of Firebase require the deletion of the old item in the array and add the new one, in order to update
+    func updateArrayItem(collectionName: String, documentName: String, arrayName: String, oldFields: Any, newFields: Any, complete: @escaping (Error?) -> ()) {
+        
+        db.collection(collectionName).document(documentName).updateData(
+            [ arrayName: FieldValue.arrayRemove([oldFields]) ]
+        ) { error in
+            if let error = error {
+                complete(error)
+                print("Error updating document: \(error)")
+            } else {
+                self.db.collection(collectionName).document(documentName).updateData(
+                    [ arrayName: FieldValue.arrayUnion([newFields]) ]
+                ) { error in
+                    if let error = error {
+                        complete(error)
+                        print("Error updating document: \(error)")
+                    } else {
+                        complete(nil)
+                    }
+                }
+            }
+        }
+    }
+    
 }

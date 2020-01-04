@@ -64,10 +64,12 @@ class MyCardsViewModel : GenericTableViewDataSource {
     func updateCards () {
         self.retrieveCards()
         
-        CardsWebService().getCurrentUserCardList(onSuccess: { cardList in
-            self.storeCards(cards: cardList.cards)
-            self.retrieveCards()
-        }, onFailure: nil)
+        CardsWebService().getCurrentUserCardList() { cardList, error in
+            if let cardList = cardList {
+                self.storeCards(cards: cardList.cards)
+                self.retrieveCards()
+            }
+        }
     }
     
     private func storeCards(cards: [CardSummaryItem]) {

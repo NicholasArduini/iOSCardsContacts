@@ -38,9 +38,11 @@ class SearchUsersViewModel : GenericTableViewDataSource {
     }
     
     func searchForCards (searchText: String) {
-        CardsWebService().searchUserCards(searchText: searchText, onSuccess: { cards in
-            self.searchedCardList = cards
-            self.delegate?.searchUsersUpdated()
-        }, onFailure: nil)
+        CardsWebService().searchUserCards(searchText: searchText, complete: { cards, error in
+            if let cards = cards {
+                self.searchedCardList = cards
+                self.delegate?.searchUsersUpdated()
+            }
+        })
     }
 }
