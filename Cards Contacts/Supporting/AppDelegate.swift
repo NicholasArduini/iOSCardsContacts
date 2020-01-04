@@ -68,5 +68,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func changeRootViewController(with identifier:String!) {
+      let storyboard = self.window?.rootViewController?.storyboard
+      let desiredViewController = storyboard?.instantiateViewController(withIdentifier: identifier);
+
+      let snapshot:UIView = (self.window?.snapshotView(afterScreenUpdates: true))!
+      desiredViewController?.view.addSubview(snapshot);
+
+      self.window?.rootViewController = desiredViewController;
+
+      UIView.animate(withDuration: 0.3, animations: {() in
+        snapshot.layer.opacity = 0;
+        snapshot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
+        }, completion: {
+          (value: Bool) in
+          snapshot.removeFromSuperview();
+      });
+    }
 }
 

@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService(self).signIn(email: email, password: password, onSuccess: {
                 self.loginButton.loadingIndicator(false)
-                self.performSegue(withIdentifier: Constants.LOGIN_TO_TAB_SEGUE, sender: self)
+                self.presentCrossDissolveVC(storyboardId: Constants.MAIN_STORYBOARD, destId: Constants.MAIN_TAB_VC)
             }, onFailure: {
                 self.loginButton.loadingIndicator(false)
             })

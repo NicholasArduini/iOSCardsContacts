@@ -18,14 +18,8 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logoutButton(_ sender: Any) {
         AuthService().logout() {
-            if let storyboard = self.storyboard {
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: Constants.LOGIN_VC)
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                if let appDelegate = appDelegate {
-                    appDelegate.window?.rootViewController = initialViewController
-                }
-            }
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.changeRootViewController(with: Constants.LOGIN_VC)
         }
     }
-    
 }

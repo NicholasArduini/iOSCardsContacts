@@ -54,4 +54,11 @@ extension UIViewController {
             vcSpinnerView = nil
         }
     }
+    
+    func presentCrossDissolveVC(storyboardId: String, destId: String) {
+        let storyboard = UIStoryboard(name: storyboardId, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: destId)
+        viewController.modalTransitionStyle = .crossDissolve
+        self.present(viewController, animated: true, completion: nil)
+    }
 }

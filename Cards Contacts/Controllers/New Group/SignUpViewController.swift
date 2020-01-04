@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService(self).signUp(email: email, password: password, onSuccess: {
                 self.signUpButton.loadingIndicator(false)
-                self.performSegue(withIdentifier: Constants.SIGN_UP_TO_TAB_SEGUE, sender: self)
+                self.presentCrossDissolveVC(storyboardId: Constants.MAIN_STORYBOARD, destId: Constants.MAIN_TAB_VC)
             }, onFailure: {
                 self.signUpButton.loadingIndicator(false)
             })
