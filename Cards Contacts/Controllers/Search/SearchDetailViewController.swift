@@ -10,10 +10,9 @@ import UIKit
 
 class SearchDetailViewController: UIViewController {
     
-    
     @IBOutlet weak var followRequestButton: UIBarButtonItem!
     
-    var uid : String?
+    var card : Card?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +21,20 @@ class SearchDetailViewController: UIViewController {
     }
     
     @IBAction func followRequestButton(_ sender: Any) {
-        
+        self.followRequestButton.isEnabled = false
+        self.sendFavourite()
+    }
+    
+    func sendFavourite() {
+        if let card = card {
+            CardsWebService().followRequestCard(card: CardSummaryItem(card: card), complete: { error in
+                if error != nil {
+                    self.followRequestButton.isEnabled = true
+                } else {
+                    self.followRequestButton.tintColor = UIColor.clear
+                }
+            })
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,8 +42,10 @@ class SearchDetailViewController: UIViewController {
         
         if segue.identifier == Constants.SHOW_CARD_SEARCH_DETAIL_CONTAINER_SEGUE {
             if let vc = segue.destination as? CardDetailContainerViewController {
-                vc.uid = self.uid
-                vc.isMyProfile = false
+                if let card = self.card {
+                    vc.uid = card.uid
+                    vc.isMyProfile = false
+                }
             }
         }
     }

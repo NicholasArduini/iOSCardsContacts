@@ -68,7 +68,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UISearch
             if let vc = segue.destination as? SearchDetailViewController {
                 let card = sender as? Card
                 if let card = card {
-                    vc.uid = card.uid
+                    vc.card = card
                 }
             }
         }

@@ -18,8 +18,8 @@ class CardsWebService {
     func getCurrentUserCardList(complete: @escaping (CardSummaryList?, Error?) -> ()) {
         
         self.firebaseManager.getDocument(objectType: CardSummaryList.self,
-                                           collectionName: CARDS_LIST_COLLECTION_NAME,
-                                           documentName: AuthService.getCurrentUserUID(),
+                                         collectionName: CARDS_LIST_COLLECTION_NAME,
+                                         documentName: AuthService.getCurrentUserUID(),
         complete: { cardList, error in
             complete(cardList, error)
         })
@@ -29,8 +29,8 @@ class CardsWebService {
                      complete: @escaping (Card?, Error?) -> ()) {
         
         self.firebaseManager.getDocument(objectType: Card.self,
-                                           collectionName: USER_CARDS_COLLECTION_NAME,
-                                           documentName: uid,
+                                         collectionName: USER_CARDS_COLLECTION_NAME,
+                                         documentName: uid,
         complete: { cards, error in
             complete(cards, error)
         })
@@ -50,6 +50,24 @@ class CardsWebService {
         complete: { card, error in
             complete(card, error)
         })
+    }
+    
+    func followRequestCard(card: CardSummaryItem,
+                            complete: (@escaping (Error?) -> ())) {
+                
+        if let cardDict = card.dict {
+            self.firebaseManager.addArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+                                           documentName: AuthService.getCurrentUserUID(),
+                                           arrayName: "cards",
+                                           fields: cardDict,
+            complete: { error in
+                if let error = error {
+                    complete(error)
+                } else {
+                    complete(nil)
+                }
+            })
+        }
     }
     
     func favouriteCard(card: CardSummaryItem,

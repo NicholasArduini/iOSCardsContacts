@@ -70,6 +70,20 @@ class FirebaseManager {
         }
     }
     
+    func addArrayItem(collectionName: String, documentName: String, arrayName: String, fields: Any, complete: @escaping (Error?) -> ()) {
+        
+        db.collection(collectionName).document(documentName).updateData(
+            [ arrayName: FieldValue.arrayUnion([fields]) ]
+        ) { error in
+            if let error = error {
+                complete(error)
+                print("Error updating document: \(error)")
+            } else {
+                complete(nil)
+            }
+        }
+    }
+    
     
     // limitations of Firebase require the deletion of the old item in the array and add the new one, in order to update
     func updateArrayItem(collectionName: String, documentName: String, arrayName: String, oldFields: Any, newFields: Any, complete: @escaping (Error?) -> ()) {

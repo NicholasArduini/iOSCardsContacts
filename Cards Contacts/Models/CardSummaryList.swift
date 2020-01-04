@@ -41,6 +41,12 @@ public class CardSummaryItem: Object, Codable, NSCopying {
         self.uid = uid
         self.isFavourite = isFavourite
     }
+    
+    init(card: Card) {
+        self.name = card.name
+        self.uid = card.uid
+        self.isFavourite = false
+    }
 
     required init() {
     }
