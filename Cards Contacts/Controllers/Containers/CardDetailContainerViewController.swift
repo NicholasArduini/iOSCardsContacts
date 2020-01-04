@@ -38,6 +38,7 @@ class CardDetailContainerViewController: UIViewController, UITableViewDelegate, 
         self.setupUI()
         
         self.cardDetailViewModel.delegate = self
+        self.cardDetailViewModel.updateCardDetails()
         self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, viewModel: self.cardDetailViewModel) { cell, model in
             let cell: CardAttributeFieldTableViewCell = cell
             

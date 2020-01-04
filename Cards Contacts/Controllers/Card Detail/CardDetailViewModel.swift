@@ -24,12 +24,10 @@ class CardDetailViewModel : GenericTableViewDataSource {
     
     init (cardUid: String, isMyProfile: Bool) {
         self.cardUid = isMyProfile ? AuthService.getCurrentUserUID() : cardUid
-        updateCardDetails()
     }
     
     init () {
         self.cardUid = AuthService.getCurrentUserUID()
-        updateCardDetails()
     }
     
     func numberOfSections() -> Int {
