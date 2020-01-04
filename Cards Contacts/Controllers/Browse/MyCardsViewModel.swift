@@ -58,6 +58,7 @@ class MyCardsViewModel : GenericTableViewDataSource {
     
     func toggleFavourite() -> Bool {
         self.isFavouriteSelected = !self.isFavouriteSelected
+        self.retrieveCards()
         return self.isFavouriteSelected
     }
     
@@ -112,6 +113,10 @@ class MyCardsViewModel : GenericTableViewDataSource {
         create it with one entry, else append to existing
          */
         for card in filteredCardList.cards {
+            // if favourite is selected, skip all those that aren't favourites
+            if isFavouriteSelected && !card.isFavourite {
+                continue
+            }
             let cardKey = String(card.name.prefix(1))
                 if var cardValues = cardsDictionary[cardKey] {
                     cardValues.append(card)
