@@ -22,6 +22,7 @@ class CardDetailViewModel {
     var card = Card()
     var isFavourite : Bool?
     var isFollowed : Bool?
+    var isMyProfile: Bool = false
     private var cardUid : String?
     
     var delegate: CardDetailDelegte?
@@ -39,6 +40,7 @@ class CardDetailViewModel {
     func retrieveAttributes() {
         self.retrieveIsFavourite()
         self.retrieveIsFriend()
+        self.isMyProfile = AuthService.getCurrentUserUID() == cardUid
     }
     
     func sendFavourite() {

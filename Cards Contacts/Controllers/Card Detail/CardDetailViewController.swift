@@ -109,13 +109,17 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     }
     
     func setupNavBar() {
-        // if you are following the searched user, show their profile as part of your cards
-        if let isFollowed = cardDetailViewModel.isFollowed, isFollowed {
+        // if you search your own profile show your profile page
+        // else if you are following the searched user, show their profile as part of your cards
+        if cardDetailViewModel.isMyProfile {
+            self.cardDetailType = .myCard
+        } else if let isFollowed = cardDetailViewModel.isFollowed, isFollowed {
             self.cardDetailType = .browseCard
         }
+        
         switch cardDetailType {
         case .myCard:
-            logoutBarButton = UIBarButtonItem(image: UIImage(named: Constants.LOGOUT), style: .plain, target: self, action: #selector(CardDetailViewController.logoutButton))
+            logoutBarButton = UIBarButtonItem(image: UIImage(named: Constants.LOGOUT_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.logoutButton))
             editProfileBarButton = UIBarButtonItem(title: Constants.EDIT, style: .plain, target: self, action: nil)
             self.navigationItem.rightBarButtonItems = [logoutBarButton!, editProfileBarButton!]
         case .browseCard:
