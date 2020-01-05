@@ -92,4 +92,22 @@ class CardsWebService {
             })
         }
     }
+    
+    func removeCard(card: CardSummaryItem,
+                    complete: (@escaping (Error?) -> ())) {
+                
+        if let cardDict = card.dict {
+            self.firebaseManager.removeArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+                                           documentName: AuthService.getCurrentUserUID(),
+                                           arrayName: "cards",
+                                           fields: cardDict,
+            complete: { error in
+                if let error = error {
+                    complete(error)
+                } else {
+                    complete(nil)
+                }
+            })
+        }
+    }
 }

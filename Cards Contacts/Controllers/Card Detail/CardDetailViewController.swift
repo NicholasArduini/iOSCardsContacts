@@ -24,6 +24,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     private var favouriteBarButton : UIBarButtonItem?
+    private var removeCardBarButton : UIBarButtonItem?
     private var followRequestBarButton : UIBarButtonItem?
     private var logoutBarButton : UIBarButtonItem?
     private var editProfileBarButton : UIBarButtonItem?
@@ -70,9 +71,30 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         self.cardDetailViewModel.sendFavourite()
     }
     
+    @objc func removeUserButtonClicked() {
+        self.removeCardBarButton?.isEnabled = false
+        self.cardDetailViewModel.removeUser { [weak self] error in
+            guard let `self` = self else { return }
+            if let error = error {
+                self.presentAlert(withMessage: error.localizedDescription)
+            } else {
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
     @objc func followRequestButton() {
         self.followRequestBarButton?.isEnabled = false
-        self.cardDetailViewModel.sendFollowRequest()
+        self.cardDetailViewModel.sendFollowRequest { [weak self] error in
+            guard let `self` = self else { return }
+            if let error = error {
+                self.followRequestBarButton?.isEnabled = true
+                self.presentAlert(withMessage: error.localizedDescription)
+            } else {
+                self.cardDetailType = .browseCard
+                self.setupNavBar()
+            }
+        }
     }
     
     @objc func logoutButton() {
@@ -124,7 +146,8 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
             self.navigationItem.rightBarButtonItems = [logoutBarButton!, editProfileBarButton!]
         case .browseCard:
             favouriteBarButton = UIBarButtonItem(image: UIImage(named: Constants.STAR_OPENED_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.favouriteButtonClicked))
-            self.navigationItem.rightBarButtonItems = [favouriteBarButton!]
+            removeCardBarButton = UIBarButtonItem(image: UIImage(named: Constants.USER_REMOVE_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.removeUserButtonClicked))
+            self.navigationItem.rightBarButtonItems = [removeCardBarButton!, favouriteBarButton!]
             self.setFavouriteButtonImage()
         case .searchCard:
             followRequestBarButton = UIBarButtonItem(title: Constants.FOLLOW_REQUEST, style: .plain, target: self, action: #selector(CardDetailViewController.followRequestButton))
@@ -155,15 +178,6 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     func cardFavouriteUpdated() {
         self.setFavouriteButtonImage()
         self.favouriteBarButton?.isEnabled = true
-    }
-    
-    func followRequestComplete(error: Error?) {
-        if error != nil {
-            self.followRequestBarButton?.isEnabled = true
-        } else {
-            self.cardDetailType = .browseCard
-            self.setupNavBar()
-        }
     }
     
     

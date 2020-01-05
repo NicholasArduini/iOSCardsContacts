@@ -34,6 +34,32 @@ class StorageService {
         }
     }
     
+    func removeObject<T : Object>(object: T) {
+        if let realm = self.realm {
+            do {
+                try realm.write {
+                    realm.delete(object)
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+    
+    func removeObject<T : Object>(object: T, with key: String) {
+        if let realm = self.realm {
+            do {
+                try realm.write {
+                    if let objectToDelete = realm.object(ofType: T.self, forPrimaryKey: key) {
+                          realm.delete(objectToDelete)
+                    }
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+    
     func writeData(customWrite: () -> ()) {
         if let realm = self.realm {
             do {

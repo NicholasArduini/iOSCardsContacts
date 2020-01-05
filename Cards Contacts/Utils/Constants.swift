@@ -39,6 +39,7 @@ public struct Constants {
     public static let STAR_FILLED_IMAGE : String = "starFilled"
     public static let STAR_OPENED_IMAGE : String = "starOpen"
     public static let LOGOUT_IMAGE : String = "logout"
+    public static let USER_REMOVE_IMAGE : String = "userRemove"
     
     // Storyboard IDs
     public static let MAIN_STORYBOARD : String = "Main"

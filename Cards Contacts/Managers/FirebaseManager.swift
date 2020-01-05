@@ -47,7 +47,7 @@ class FirebaseManager {
         
         docRef.getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error getting documents: \(error)")
+                print(error)
                 complete(nil, error)
             } else {
                 var objArray = [T]()
@@ -77,7 +77,21 @@ class FirebaseManager {
         ) { error in
             if let error = error {
                 complete(error)
-                print("Error updating document: \(error)")
+                print(error)
+            } else {
+                complete(nil)
+            }
+        }
+    }
+    
+    func removeArrayItem(collectionName: String, documentName: String, arrayName: String, fields: Any, complete: @escaping (Error?) -> ()) {
+        
+        db.collection(collectionName).document(documentName).updateData(
+            [ arrayName: FieldValue.arrayRemove([fields]) ]
+        ) { error in
+            if let error = error {
+                complete(error)
+                print(error)
             } else {
                 complete(nil)
             }
@@ -88,19 +102,15 @@ class FirebaseManager {
     // limitations of Firebase require the deletion of the old item in the array and add the new one, in order to update
     func updateArrayItem(collectionName: String, documentName: String, arrayName: String, oldFields: Any, newFields: Any, complete: @escaping (Error?) -> ()) {
         
-        db.collection(collectionName).document(documentName).updateData(
-            [ arrayName: FieldValue.arrayRemove([oldFields]) ]
-        ) { error in
+        self.removeArrayItem(collectionName: collectionName, documentName: documentName, arrayName: arrayName, fields: oldFields) { error in
             if let error = error {
                 complete(error)
-                print("Error updating document: \(error)")
+                print(error)
             } else {
-                self.db.collection(collectionName).document(documentName).updateData(
-                    [ arrayName: FieldValue.arrayUnion([newFields]) ]
-                ) { error in
+                self.addArrayItem(collectionName: collectionName, documentName: documentName, arrayName: arrayName, fields: newFields) { error in
                     if let error = error {
                         complete(error)
-                        print("Error updating document: \(error)")
+                        print(error)
                     } else {
                         complete(nil)
                     }

@@ -12,7 +12,6 @@ protocol CardDetailDelegte {
     func cardDetailsUpdated()
     func failureUpdatingCard(message: String)
     func cardFavouriteUpdated()
-    func followRequestComplete(error: Error?)
 }
 
 class CardDetailViewModel {
@@ -57,9 +56,26 @@ class CardDetailViewModel {
         })
     }
     
-    func sendFollowRequest() {
+    func removeUser(complete: @escaping (Error?) -> ()) {
+        let card = CardSummaryItem(card: self.card)
+        if let isFavourite = isFavourite {
+            card.setFavourite(isFavourite)
+        }
+        CardsWebService().removeCard(card: card, complete: { error in
+            if error == nil {
+                StorageService().removeObject(object: card, with: card.uid)
+            }
+            complete(error)
+        })
+    }
+    
+    func sendFollowRequest(complete: @escaping (Error?) -> ()) {
+        let card = CardSummaryItem(card: self.card)
         CardsWebService().followRequestCard(card: CardSummaryItem(card: self.card), complete: { error in
-            self.delegate?.followRequestComplete(error: error)
+            if error == nil {
+                StorageService().storeObject(object: card)
+            }
+            complete(error)
         })
     }
     
