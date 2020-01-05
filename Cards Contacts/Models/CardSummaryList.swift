@@ -36,6 +36,12 @@ public class CardSummaryItem: Object, Codable, NSCopying {
         }
     }
     
+    func setFavourite(_ bool: Bool) {
+        StorageService().writeData {
+            isFavourite = bool
+        }
+    }
+    
     init(name: String, uid: String, isFavourite: Bool) {
         self.name = name
         self.uid = uid

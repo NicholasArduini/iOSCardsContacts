@@ -17,6 +17,9 @@ public struct Constants {
     public static let ALERT : String = "Alert"
     public static let OKAY : String = "Okay"
     public static let COPIED : String = "Copied!"
+    public static let EDIT : String = "Edit"
+    public static let LOGOUT : String = "Logout"
+    public static let FOLLOW_REQUEST : String = "Follow request"
     
     // View Cells
     public static let BROWSE_CARDS_TABLE_CELL : String = "browseCardsTableCell"

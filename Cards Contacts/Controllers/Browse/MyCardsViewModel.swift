@@ -12,7 +12,7 @@ protocol MyCardsDelegte {
     func cardsListUpdated()
 }
 
-class MyCardsViewModel : GenericTableViewDataSource {
+class MyCardsViewModel {
     
     var delegate: MyCardsDelegte?
     
@@ -24,26 +24,6 @@ class MyCardsViewModel : GenericTableViewDataSource {
     
     init () {
         updateCards()
-    }
-    
-    func numberOfSections() -> Int {
-        return cardsSectionTitles.count
-    }
-    
-    func getSectionIndexTitles() -> [String] {
-        return cardsSectionTitles
-    }
-    
-    func numberOfRows(_ section: Int) -> Int {
-        let cardKey = cardsSectionTitles[section]
-        if let cardValues = cardsDictionary[cardKey] {
-            return cardValues.count
-        }
-        return 0
-    }
-    
-    func modelAt<Card>(_ section: Int, _ index: Int) -> Card {
-        return getCard(for: IndexPath(row: index, section: section)) as! Card
     }
     
     func getCard(for indexPath: IndexPath) -> CardSummaryItem? {
@@ -131,4 +111,28 @@ class MyCardsViewModel : GenericTableViewDataSource {
         cardsSectionTitles = cardsSectionTitles.sorted(by: { $0 < $1 })
         
     }
+}
+
+extension MyCardsViewModel : GenericTableViewDataSource {
+    
+    func numberOfSections() -> Int {
+        return cardsSectionTitles.count
+    }
+    
+    func getSectionIndexTitles() -> [String] {
+        return cardsSectionTitles
+    }
+    
+    func numberOfRows(_ section: Int) -> Int {
+        let cardKey = cardsSectionTitles[section]
+        if let cardValues = cardsDictionary[cardKey] {
+            return cardValues.count
+        }
+        return 0
+    }
+    
+    func modelAt<Card>(_ section: Int, _ index: Int) -> Card {
+        return getCard(for: IndexPath(row: index, section: section)) as! Card
+    }
+    
 }

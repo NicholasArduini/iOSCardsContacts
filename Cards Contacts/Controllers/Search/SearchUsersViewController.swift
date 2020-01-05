@@ -65,10 +65,11 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UISearch
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == Constants.SHOW_CARD_SEARCH_DETAIL_SEGUE {
-            if let vc = segue.destination as? SearchDetailViewController {
+            if let vc = segue.destination as? CardDetailViewController {
                 let card = sender as? Card
                 if let card = card {
-                    vc.card = card
+                    vc.uid = card.uid
+                    vc.cardDetailType = .searchCard
                 }
             }
         }

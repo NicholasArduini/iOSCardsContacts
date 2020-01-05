@@ -11,45 +11,54 @@ import Foundation
 protocol CardDetailDelegte {
     func cardDetailsUpdated()
     func failureUpdatingCard(message: String)
+    func cardFavouriteUpdated()
+    func followRequestComplete(error: Error?)
 }
 
-class CardDetailViewModel : GenericTableViewDataSource {
+class CardDetailViewModel {
+    
+    private var cardFieldItemsDict = [String: [FieldItem]]()
+    var cardsFieldTitles = [String]()
+    var card = Card()
+    var isFavourite : Bool?
+    var isFollowed : Bool?
+    private var cardUid : String?
     
     var delegate: CardDetailDelegte?
-    var cardsFieldTitles = [String]()
-    private var cardFieldItemsDict = [String: [FieldItem]]()
-    private var card = Card()
-    
-    private var cardUid : String?
     
     init (cardUid: String, isMyProfile: Bool) {
         self.cardUid = isMyProfile ? AuthService.getCurrentUserUID() : cardUid
+        self.retrieveAttributes()
     }
     
     init () {
         self.cardUid = AuthService.getCurrentUserUID()
+        self.retrieveAttributes()
     }
     
-    func numberOfSections() -> Int {
-        return self.cardsFieldTitles.count
+    func retrieveAttributes() {
+        self.retrieveIsFavourite()
+        self.retrieveIsFriend()
     }
     
-    func numberOfRows(_ section: Int) -> Int {
-        let key = cardsFieldTitles[section]
-        if let value = cardFieldItemsDict[key] {
-            return value.count
+    func sendFavourite() {
+        let card = CardSummaryItem(card: self.card)
+        if let isFavourite = isFavourite {
+            card.setFavourite(isFavourite)
         }
-        return 0
+        CardsWebService().favouriteCard(card: card, complete: { cardSummaryItem, error in
+            if let newCardSummaryItem = cardSummaryItem {
+                self.isFavourite = newCardSummaryItem.isFavourite
+                StorageService().storeObject(object: card)
+            }
+            self.delegate?.cardFavouriteUpdated()
+        })
     }
     
-    func modelAt<FieldItem>(_ section: Int, _ index: Int) -> FieldItem {
-        let key = cardsFieldTitles[section]
-        let values = cardFieldItemsDict[key]
-        return values?[index] as! FieldItem
-    }
-    
-    func getCard() -> Card{
-        return card
+    func sendFollowRequest() {
+        CardsWebService().followRequestCard(card: CardSummaryItem(card: self.card), complete: { error in
+            self.delegate?.followRequestComplete(error: error)
+        })
     }
     
     func updateCardDetails () {
@@ -57,18 +66,13 @@ class CardDetailViewModel : GenericTableViewDataSource {
         if let cardUid = self.cardUid {
             CardsWebService().getUserCard(uid: cardUid, complete: { card, error in
                 if let card = card {
-                    self.storeCardDetails(card: card)
+                    StorageService().storeObject(object: card)
                     self.retrieveCardDetails()
                 } else if let error = error {
                     self.delegate?.failureUpdatingCard(message: error.localizedDescription)
                 }
             })
         }
-    }
-    
-    private func storeCardDetails(card: Card) {
-        let storageService = StorageService()
-        storageService.storeObject(object: card)
     }
     
     private func retrieveCardDetails() {
@@ -78,6 +82,25 @@ class CardDetailViewModel : GenericTableViewDataSource {
             self.card = Card(value: firstCard)
             self.setupFieldSections()
             self.delegate?.cardDetailsUpdated()
+        }
+    }
+    
+    private func retrieveIsFavourite() {
+        let predicate = NSPredicate(format: "uid = %@", cardUid ?? "")
+        let cardSummaryItem = StorageService().retrieveObject(objectType: CardSummaryItem.self, with: predicate)
+        if let firstCard = cardSummaryItem?.first {
+            self.isFavourite = firstCard.isFavourite
+            self.delegate?.cardFavouriteUpdated()
+        }
+    }
+    
+    private func retrieveIsFriend() {
+        let predicate = NSPredicate(format: "uid = %@", cardUid ?? "")
+        let cardSummaryItem = StorageService().retrieveObject(objectType: CardSummaryItem.self, with: predicate)
+        if cardSummaryItem != nil && cardSummaryItem!.count > 0 {
+            self.isFollowed = true
+        } else {
+            self.isFollowed = false
         }
     }
     
@@ -111,4 +134,26 @@ class CardDetailViewModel : GenericTableViewDataSource {
         }
         
     }
+}
+
+extension CardDetailViewModel : GenericTableViewDataSource {
+    
+    func numberOfSections() -> Int {
+        return self.cardsFieldTitles.count
+    }
+    
+    func numberOfRows(_ section: Int) -> Int {
+        let key = cardsFieldTitles[section]
+        if let value = cardFieldItemsDict[key] {
+            return value.count
+        }
+        return 0
+    }
+    
+    func modelAt<FieldItem>(_ section: Int, _ index: Int) -> FieldItem {
+        let key = cardsFieldTitles[section]
+        let values = cardFieldItemsDict[key]
+        return values?[index] as! FieldItem
+    }
+    
 }

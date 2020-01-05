@@ -63,6 +63,24 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == Constants.SHOW_CARD_DETAIL_SEGUE {
+            if let vc = segue.destination as? CardDetailViewController {
+                let card = sender as? CardSummaryItem
+                if let card = card {
+                    vc.uid = card.uid
+                    // vc.isFavourite = card.isFavourite
+                    vc.cardDetailType = .browseCard
+                }
+            }
+        }
+    }
+    
+    
+    // MARK: MyCardsDelegte methods
+    
     func cardsListUpdated() {
         self.tableView.reloadData()
     }
@@ -74,24 +92,14 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         }
     }
     
+    
+    // MARK: UITableViewDelegate methods
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let card = self.myCardsViewModel.getCard(for: indexPath) {
             performSegue(withIdentifier: Constants.SHOW_CARD_DETAIL_SEGUE, sender: card)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == Constants.SHOW_CARD_DETAIL_SEGUE {
-            if let vc = segue.destination as? CardDetailParentViewController {
-                let card = sender as? CardSummaryItem
-                if let card = card {
-                    vc.cardSummaryItem = card
-                }
-            }
         }
     }
     
