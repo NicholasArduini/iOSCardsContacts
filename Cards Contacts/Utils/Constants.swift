@@ -34,6 +34,9 @@ public struct Constants {
     public static let SHOW_CARD_DETAIL_CONTAINER_SEGUE : String = "showCardDetailContainerSegue"
     public static let SHOW_CARD_SEARCH_DETAIL_CONTAINER_SEGUE : String = "showCardSearchDetailContainerSegue"
     
+    // Notification Identifiers
+    public static let CARD_UPDATED_NOTIFICATION : String = "CardUpdatedNotificationIdentifier"
+    
     // Images
     public static let CARDS_LOGO_IMAGE : String = "cards"
     public static let STAR_FILLED_IMAGE : String = "starFilled"

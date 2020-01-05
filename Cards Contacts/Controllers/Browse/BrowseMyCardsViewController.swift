@@ -23,6 +23,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         super.viewDidLoad()
         
         self.setupNavBar()
+        self.addNotificationObservers()
     
         self.myCardsViewModel.delegate = self
         self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, viewModel: self.myCardsViewModel) { cell, model in
@@ -37,6 +38,18 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchController.dismiss(animated: false, completion: nil)
+    }
+    
+    deinit {
+       self.removeNotifcationObservers()
+    }
+    
+    func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateCardList(notification:)), name: Notification.Name(Constants.CARD_UPDATED_NOTIFICATION), object: nil)
+    }
+    
+    func removeNotifcationObservers() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.CARD_UPDATED_NOTIFICATION), object: nil)
     }
     
     func setupNavBar() {
@@ -71,11 +84,14 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
                 let card = sender as? CardSummaryItem
                 if let card = card {
                     vc.uid = card.uid
-                    // vc.isFavourite = card.isFavourite
                     vc.cardDetailType = .browseCard
                 }
             }
         }
+    }
+    
+    @objc func updateCardList(notification: Notification) {
+        self.myCardsViewModel.retrieveCards()
     }
     
     

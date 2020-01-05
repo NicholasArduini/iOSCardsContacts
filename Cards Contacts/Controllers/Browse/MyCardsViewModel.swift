@@ -60,7 +60,7 @@ class MyCardsViewModel {
         }
     }
     
-    private func retrieveCards() {
+    func retrieveCards() {
         let cards = StorageService().retrieveObject(objectType: CardSummaryItem.self)
         if let cards = cards {
             let cardList = CardSummaryList(cards: Array(cards))

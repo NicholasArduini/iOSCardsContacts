@@ -79,6 +79,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
                 self.presentAlert(withMessage: error.localizedDescription)
             } else {
                 _ = self.navigationController?.popViewController(animated: true)
+                self.alertOnUpdateNotification()
             }
         }
     }
@@ -93,6 +94,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
             } else {
                 self.cardDetailType = .browseCard
                 self.setupNavBar()
+                self.alertOnUpdateNotification()
             }
         }
     }
@@ -155,6 +157,9 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         }
     }
     
+    func alertOnUpdateNotification() {
+        NotificationCenter.default.post(name: Notification.Name(Constants.CARD_UPDATED_NOTIFICATION), object: nil)
+    }
     
     // MARK: CardDetailDelegate methods
     
@@ -178,6 +183,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     func cardFavouriteUpdated() {
         self.setFavouriteButtonImage()
         self.favouriteBarButton?.isEnabled = true
+        self.alertOnUpdateNotification()
     }
     
     

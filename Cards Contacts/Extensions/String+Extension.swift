@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     func getInitials() -> String {
-        return self.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+        return self.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first ?? " ")") + "\($1.first ?? " ")" }
     }
     
     func filterOnlyNumbers() -> String {
