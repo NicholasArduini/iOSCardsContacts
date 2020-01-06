@@ -72,14 +72,16 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     }
     
     @objc func removeUserButtonClicked() {
-        self.removeCardBarButton?.isEnabled = false
-        self.cardDetailViewModel.removeUser { [weak self] error in
-            guard let `self` = self else { return }
-            if let error = error {
-                self.presentAlert(withMessage: error.localizedDescription)
-            } else {
-                _ = self.navigationController?.popViewController(animated: true)
-                self.alertOnUpdateNotification()
+        self.presentConfirmAlert(withMessage: Constants.CONFRIM_REMOVE_CARD) {
+            self.removeCardBarButton?.isEnabled = false
+            self.cardDetailViewModel.removeUser { [weak self] error in
+                guard let `self` = self else { return }
+                if let error = error {
+                    self.presentAlert(withMessage: error.localizedDescription)
+                } else {
+                    _ = self.navigationController?.popViewController(animated: true)
+                    self.alertOnUpdateNotification()
+                }
             }
         }
     }

@@ -20,6 +20,10 @@ public struct Constants {
     public static let EDIT : String = "Edit"
     public static let LOGOUT : String = "Logout"
     public static let FOLLOW_REQUEST : String = "Follow request"
+    public static let CONFIRMATION : String = "Confirmation"
+    public static let CANCEL : String = "Cancel"
+    public static let CONFIRM : String = "Confirm"
+    public static let CONFRIM_REMOVE_CARD : String = "Are you sure you would like to remove this card?"
     
     // View Cells
     public static let BROWSE_CARDS_TABLE_CELL : String = "browseCardsTableCell"

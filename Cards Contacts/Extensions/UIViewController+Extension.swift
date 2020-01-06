@@ -34,6 +34,17 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func presentConfirmAlert(withMessage: String, confirm: @escaping () -> ()){
+        let alert = UIAlertController(title: Constants.CONFIRMATION, message: withMessage, preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: Constants.CANCEL, style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: Constants.CONFIRM, style: UIAlertAction.Style.destructive, handler: { action in
+            confirm()
+        }))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         let indicatorView = UIActivityIndicatorView.init(style: .whiteLarge)
