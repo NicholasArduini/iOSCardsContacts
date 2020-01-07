@@ -29,11 +29,16 @@ class TableViewDataSource<CellType,ViewModel : GenericTableViewDataSource, Model
     var viewModel: ViewModel
     let configureCell: (CellType, Model) -> ()
     
-    init(cellIdentifier: String, viewModel: ViewModel, configureCell: @escaping (CellType, Model) -> ()) {
+    let emptyMessage: String?
+    let emptyImageName: String?
+    
+    init(cellIdentifier: String, emptyMessage: String?, emptyImageName: String?, viewModel: ViewModel, configureCell: @escaping (CellType, Model) -> ()) {
         
         self.cellIdentifier = cellIdentifier
         self.viewModel = viewModel
         self.configureCell = configureCell
+        self.emptyMessage = emptyMessage
+        self.emptyImageName = emptyImageName
     }
     
     func updateItems(_ viewModel: ViewModel) {
@@ -41,6 +46,12 @@ class TableViewDataSource<CellType,ViewModel : GenericTableViewDataSource, Model
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if let emptyMessage = emptyMessage, self.viewModel.numberOfSections() == 0 {
+            tableView.setEmptyMessage(message: emptyMessage, imageName: emptyImageName)
+        } else {
+            tableView.restore()
+        }
+        
         return self.viewModel.numberOfSections()
     }
     

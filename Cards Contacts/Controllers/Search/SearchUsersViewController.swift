@@ -23,7 +23,7 @@ class SearchUsersViewController: UIViewController, UITableViewDelegate, UISearch
         self.setupNavBar()
         
         self.searchUsersViewModel.delegate = self
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, viewModel: self.searchUsersViewModel) { cell, model in
+        self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, emptyMessage: Constants.EMPTY_SEARCH_MESSAGE, emptyImageName: Constants.SEARCH_IMAGE, viewModel: self.searchUsersViewModel) { cell, model in
             let cell: BrowseCardsTableViewCell = cell
             cell.setCell(card: model)
         }

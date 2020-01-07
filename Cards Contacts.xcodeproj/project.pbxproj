@@ -21,7 +21,7 @@
 		5D3D237422C01203006B7459 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237322C01203006B7459 /* LoginViewController.swift */; };
 		5D3D237822C02084006B7459 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237722C02084006B7459 /* SignUpViewController.swift */; };
 		5D3D237C22C02F88006B7459 /* BrowseMyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */; };
-		5D4F294123BEB1F800712B54 /* Enodeable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F294023BEB1F800712B54 /* Enodeable+Extension.swift */; };
+		5D4F294123BEB1F800712B54 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F294023BEB1F800712B54 /* Encodable+Extension.swift */; };
 		5D54F4B823B40DEE00B6B027 /* CardSummaryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4B723B40DEE00B6B027 /* CardSummaryList.swift */; };
 		5D54F4BA23B50A3E00B6B027 /* CardsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */; };
 		5D54F4BD23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54F4BC23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift */; };
@@ -38,6 +38,7 @@
 		5D54F4D923B8F52600B6B027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D54F4D823B8F52600B6B027 /* GoogleService-Info.plist */; };
 		5D7669D023B2BD0B00BF8BA5 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */; };
 		5D7669D323B2BDB400BF8BA5 /* MyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */; };
+		5D90610B23C3FC970012A01A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90610A23C3FC970012A01A /* UITableView+Extension.swift */; };
 		5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BB323B25622003CF582 /* UIColor+Extension.swift */; };
 		5DA55BB923B25895003CF582 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BB823B25895003CF582 /* Constants.swift */; };
 		5DA55BBC23B25DB6003CF582 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BBB23B25DB6003CF582 /* UIButton+Extension.swift */; };
@@ -65,7 +66,7 @@
 		5D3D237322C01203006B7459 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "../New Group/LoginViewController.swift"; sourceTree = "<group>"; };
 		5D3D237722C02084006B7459 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "../New Group/SignUpViewController.swift"; sourceTree = "<group>"; };
 		5D3D237B22C02F88006B7459 /* BrowseMyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseMyCardsViewController.swift; sourceTree = "<group>"; };
-		5D4F294023BEB1F800712B54 /* Enodeable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enodeable+Extension.swift"; sourceTree = "<group>"; };
+		5D4F294023BEB1F800712B54 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		5D54F4B723B40DEE00B6B027 /* CardSummaryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSummaryList.swift; sourceTree = "<group>"; };
 		5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsWebService.swift; sourceTree = "<group>"; };
 		5D54F4BC23B5BDA600B6B027 /* BrowseCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCardsTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		5D54F4D823B8F52600B6B027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewModel.swift; sourceTree = "<group>"; };
+		5D90610A23C3FC970012A01A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		5DA55BB323B25622003CF582 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5DA55BB823B25895003CF582 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DA55BBB23B25DB6003CF582 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -279,7 +281,8 @@
 				5D54F4C023B5C91C00B6B027 /* String+Extension.swift */,
 				5D54F4C223B5DAD300B6B027 /* UIViewController+Extension.swift */,
 				5D54F4D623B7F48800B6B027 /* UIView+Extension.swift */,
-				5D4F294023BEB1F800712B54 /* Enodeable+Extension.swift */,
+				5D4F294023BEB1F800712B54 /* Encodable+Extension.swift */,
+				5D90610A23C3FC970012A01A /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,7 +451,8 @@
 				5D7669D023B2BD0B00BF8BA5 /* TableViewDataSource.swift in Sources */,
 				5D2A853123B9D19A0040DBDE /* ForgotPasswordViewController.swift in Sources */,
 				5DA55BBC23B25DB6003CF582 /* UIButton+Extension.swift in Sources */,
-				5D4F294123BEB1F800712B54 /* Enodeable+Extension.swift in Sources */,
+				5D4F294123BEB1F800712B54 /* Encodable+Extension.swift in Sources */,
+				5D90610B23C3FC970012A01A /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

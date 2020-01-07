@@ -49,7 +49,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         
         self.cardDetailViewModel.delegate = self
         self.cardDetailViewModel.updateCardDetails()
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, viewModel: self.cardDetailViewModel) { cell, model in
+        self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, emptyMessage: nil, emptyImageName: nil, viewModel: self.cardDetailViewModel) { cell, model in
             let cell: CardAttributeFieldTableViewCell = cell
             
             cell.setCell(fieldItem: model, view: self.view) { fieldItem in
@@ -128,9 +128,9 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     
     func setFavouriteButtonImage() {
         if let isFavourite = cardDetailViewModel.isFavourite, isFavourite {
-            self.favouriteBarButton?.image = UIImage(named: Constants.STAR_FILLED_IMAGE)
+            self.favouriteBarButton?.image = UIImage(named: Constants.STAR_FILLED_ICON_IMAGE)
         } else {
-            self.favouriteBarButton?.image = UIImage(named: Constants.STAR_OPENED_IMAGE)
+            self.favouriteBarButton?.image = UIImage(named: Constants.STAR_OPENED_ICON_IMAGE)
         }
     }
     
@@ -145,12 +145,12 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         
         switch cardDetailType {
         case .myCard:
-            logoutBarButton = UIBarButtonItem(image: UIImage(named: Constants.LOGOUT_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.logoutButton))
+            logoutBarButton = UIBarButtonItem(image: UIImage(named: Constants.LOGOUT_ICON_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.logoutButton))
             editProfileBarButton = UIBarButtonItem(title: Constants.EDIT, style: .plain, target: self, action: nil)
             self.navigationItem.rightBarButtonItems = [logoutBarButton!, editProfileBarButton!]
         case .browseCard:
-            favouriteBarButton = UIBarButtonItem(image: UIImage(named: Constants.STAR_OPENED_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.favouriteButtonClicked))
-            removeCardBarButton = UIBarButtonItem(image: UIImage(named: Constants.USER_REMOVE_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.removeUserButtonClicked))
+            favouriteBarButton = UIBarButtonItem(image: UIImage(named: Constants.STAR_OPENED_ICON_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.favouriteButtonClicked))
+            removeCardBarButton = UIBarButtonItem(image: UIImage(named: Constants.USER_REMOVE_ICON_IMAGE), style: .plain, target: self, action: #selector(CardDetailViewController.removeUserButtonClicked))
             self.navigationItem.rightBarButtonItems = [removeCardBarButton!, favouriteBarButton!]
             self.setFavouriteButtonImage()
         case .searchCard:

@@ -24,6 +24,8 @@ public struct Constants {
     public static let CANCEL : String = "Cancel"
     public static let CONFIRM : String = "Confirm"
     public static let CONFRIM_REMOVE_CARD : String = "Are you sure you would like to remove this card?"
+    public static let EMPTY_CARD_MESSAGE : String = "No cards yet.\nTry searching and adding cards first!"
+    public static let EMPTY_SEARCH_MESSAGE : String = "Search cards"
     
     // View Cells
     public static let BROWSE_CARDS_TABLE_CELL : String = "browseCardsTableCell"
@@ -43,10 +45,11 @@ public struct Constants {
     
     // Images
     public static let CARDS_LOGO_IMAGE : String = "cards"
-    public static let STAR_FILLED_IMAGE : String = "starFilled"
-    public static let STAR_OPENED_IMAGE : String = "starOpen"
-    public static let LOGOUT_IMAGE : String = "logout"
-    public static let USER_REMOVE_IMAGE : String = "userRemove"
+    public static let STAR_FILLED_ICON_IMAGE : String = "starFilled"
+    public static let STAR_OPENED_ICON_IMAGE : String = "starOpen"
+    public static let LOGOUT_ICON_IMAGE : String = "logout"
+    public static let USER_REMOVE_ICON_IMAGE : String = "userRemove"
+    public static let SEARCH_IMAGE : String = "searchImage"
     
     // Storyboard IDs
     public static let MAIN_STORYBOARD : String = "Main"

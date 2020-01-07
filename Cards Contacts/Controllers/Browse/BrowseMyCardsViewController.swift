@@ -26,7 +26,7 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
         self.addNotificationObservers()
     
         self.myCardsViewModel.delegate = self
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, viewModel: self.myCardsViewModel) { cell, model in
+        self.datasource = TableViewDataSource(cellIdentifier: Constants.BROWSE_CARDS_TABLE_CELL, emptyMessage: nil, emptyImageName: nil, viewModel: self.myCardsViewModel) { cell, model in
             let cell: BrowseCardsTableViewCell = cell
             cell.setCell(card: model)
         }
@@ -70,9 +70,9 @@ class BrowseMyCardsViewController: UIViewController, UITableViewDelegate, UISear
     
     @IBAction func favouriteButton(_ sender: Any) {
         if myCardsViewModel.toggleFavourite() {
-            self.favouriteButton.image = UIImage(named: Constants.STAR_FILLED_IMAGE)
+            self.favouriteButton.image = UIImage(named: Constants.STAR_FILLED_ICON_IMAGE)
         } else {
-            self.favouriteButton.image = UIImage(named: Constants.STAR_OPENED_IMAGE)
+            self.favouriteButton.image = UIImage(named: Constants.STAR_OPENED_ICON_IMAGE)
         }
     }
     

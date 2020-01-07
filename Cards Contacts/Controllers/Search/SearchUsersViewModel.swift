@@ -22,7 +22,7 @@ class SearchUsersViewModel : GenericTableViewDataSource {
     }
     
     func numberOfSections() -> Int {
-        return 1
+        return searchedCardList.count > 0 ? 1 : 0
     }
     
     func numberOfRows(_ section: Int) -> Int {
