@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CardDetailDelegte {
+protocol CardDetailDelegte: class {
     func cardDetailsUpdated()
     func failureUpdatingCard(message: String)
     func cardFavouriteUpdated()
@@ -24,7 +24,7 @@ class CardDetailViewModel {
     var isMyProfile: Bool = false
     private var cardUid : String?
     
-    var delegate: CardDetailDelegte?
+    weak var delegate: CardDetailDelegte?
     
     init (cardUid: String, isMyProfile: Bool) {
         self.cardUid = isMyProfile ? AuthService.getCurrentUserUID() : cardUid
@@ -47,12 +47,12 @@ class CardDetailViewModel {
         if let isFavourite = isFavourite {
             card.setFavourite(isFavourite)
         }
-        CardsWebService().favouriteCard(card: card, complete: { cardSummaryItem, error in
+        CardsWebService().favouriteCard(card: card, complete: { [weak self] cardSummaryItem, error in
             if let newCardSummaryItem = cardSummaryItem {
-                self.isFavourite = newCardSummaryItem.isFavourite
+                self?.isFavourite = newCardSummaryItem.isFavourite
                 StorageService().storeObject(object: card)
             }
-            self.delegate?.cardFavouriteUpdated()
+            self?.delegate?.cardFavouriteUpdated()
         })
     }
     
@@ -82,12 +82,12 @@ class CardDetailViewModel {
     func updateCardDetails () {
         self.retrieveCardDetails()
         if let cardUid = self.cardUid {
-            CardsWebService().getUserCard(uid: cardUid, complete: { card, error in
+            CardsWebService().getUserCard(uid: cardUid, complete: { [weak self] card, error in
                 if let card = card {
                     StorageService().storeObject(object: card)
-                    self.retrieveCardDetails()
+                    self?.retrieveCardDetails()
                 } else if let error = error {
-                    self.delegate?.failureUpdatingCard(message: error.localizedDescription)
+                    self?.delegate?.failureUpdatingCard(message: error.localizedDescription)
                 }
             })
         }

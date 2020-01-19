@@ -36,7 +36,8 @@ class CardDetailTableViewDataSource: NSObject, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CARD_DETAIL_ADDRESS_TABLE_CELL, for: indexPath) as? CardAddressAttributeFieldTableViewCell else {
                 fatalError("\(Constants.CARD_DETAIL_ADDRESS_TABLE_CELL) not found")
             }
-            cell.setCell(fieldItem: fieldItem, view: self.parentView, actionPressed: { fieldItem in
+            cell.setCell(fieldItem: fieldItem, view: self.parentView, actionPressed: { [weak self] fieldItem in
+                guard let self = self else { return }
                 self.actionPressed(fieldItem)
             })
             return cell

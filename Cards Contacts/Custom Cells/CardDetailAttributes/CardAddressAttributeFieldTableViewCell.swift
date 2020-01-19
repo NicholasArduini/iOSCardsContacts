@@ -26,8 +26,8 @@ class CardAddressAttributeFieldTableViewCell: BaseCardAttributeFieldTableViewCel
             addressLabel.text = value.toUIString()
             
             MapKitUtils.getLatLonFrom(address: value.toString(), onError: { _ in }, onSuccess: { lat, lon in
-                MapKitUtils.generateMapImageFrom(lat: lat, lon: lon, bounds: self.mapImageView.bounds, onError: { _ in }, onSuccess: { image in
-                    self.mapImageView.image = image
+                MapKitUtils.generateMapImageFrom(lat: lat, lon: lon, bounds: self.mapImageView.bounds, onError: { _ in }, onSuccess: { [weak self] image in
+                    self?.mapImageView.image = image
                 })
             })
         }

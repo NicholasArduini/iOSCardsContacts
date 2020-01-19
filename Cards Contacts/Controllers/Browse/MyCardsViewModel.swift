@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol MyCardsDelegte {
+protocol MyCardsDelegte: class {
     func cardsListUpdated()
 }
 
 class MyCardsViewModel {
     
-    var delegate: MyCardsDelegte?
+    weak var delegate: MyCardsDelegte?
     
     var cardsSectionTitles = [String]()
     private var cardsDictionary = [String: [CardSummaryItem]]()
@@ -45,10 +45,10 @@ class MyCardsViewModel {
     func updateCards () {
         self.retrieveCards()
         
-        CardsWebService().getCurrentUserCardList() { cardList, error in
+        CardsWebService().getCurrentUserCardList() { [weak self] cardList, error in
             if let cardList = cardList {
-                self.storeCards(cards: cardList.cards)
-                self.retrieveCards()
+                self?.storeCards(cards: cardList.cards)
+                self?.retrieveCards()
             }
         }
     }

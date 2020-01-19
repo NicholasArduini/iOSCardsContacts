@@ -51,8 +51,8 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         self.cardDetailViewModel.delegate = self
         self.cardDetailViewModel.updateCardDetails()
         
-        self.datasource = CardDetailTableViewDataSource(cardDetailViewModel: self.cardDetailViewModel, view: self.view) { fieldItem in
-            self.handleCardActionClicked(fieldItem: fieldItem)
+        self.datasource = CardDetailTableViewDataSource(cardDetailViewModel: self.cardDetailViewModel, view: self.view) { [weak self] fieldItem in
+            self?.handleCardActionClicked(fieldItem: fieldItem)
         }
         self.tableView.dataSource = self.datasource
         self.tableView.delegate = self
@@ -68,7 +68,8 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
             ContactActions.composeEmail(vc: self, email: fieldItem.value )
         } else if fieldItem.type == .address {
             if let address = fieldItem.addressValue {
-                MapKitUtils.getLatLonFrom(address: address.toString(), onError: { _ in }, onSuccess: { lat, lon in
+                MapKitUtils.getLatLonFrom(address: address.toString(), onError: { _ in }, onSuccess: { [weak self] lat, lon in
+                    guard let `self` = self else { return }
                     MapKitUtils.launchOnMap(lat: lat, lon: lon, name: "\(self.cardDetailViewModel.card.name) \(fieldItem.name)")
                 })
             }
@@ -86,7 +87,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         self.presentConfirmAlert(withMessage: Constants.CONFRIM_REMOVE_CARD) {
             self.removeCardBarButton?.isEnabled = false
             self.cardDetailViewModel.removeUser { [weak self] error in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if let error = error {
                     self.presentAlert(withMessage: error.localizedDescription)
                 } else {
@@ -100,7 +101,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     @objc func followRequestButton() {
         self.followRequestBarButton?.isEnabled = false
         self.cardDetailViewModel.sendFollowRequest { [weak self] error in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if let error = error {
                 self.followRequestBarButton?.isEnabled = true
                 self.presentAlert(withMessage: error.localizedDescription)

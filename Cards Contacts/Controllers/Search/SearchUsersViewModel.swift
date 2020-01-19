@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol SearchUsersDelegte {
+protocol SearchUsersDelegte: class {
     func searchUsersUpdated()
 }
 
 class SearchUsersViewModel : GenericTableViewDataSource {
     
-    var delegate: SearchUsersDelegte?
+    weak var delegate: SearchUsersDelegte?
     
     private var searchedCardList = [Card]()
     
@@ -38,10 +38,10 @@ class SearchUsersViewModel : GenericTableViewDataSource {
     }
     
     func searchForCards (searchText: String) {
-        CardsWebService().searchUserCards(searchText: searchText, complete: { cards, error in
+        CardsWebService().searchUserCards(searchText: searchText, complete: { [weak self] cards, error in
             if let cards = cards {
-                self.searchedCardList = cards
-                self.delegate?.searchUsersUpdated()
+                self?.searchedCardList = cards
+                self?.delegate?.searchUsersUpdated()
             }
         })
     }
