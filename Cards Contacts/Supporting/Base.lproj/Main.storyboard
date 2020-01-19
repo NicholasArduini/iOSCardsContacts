@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -304,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UT1-aC-CF7">
-                                <rect key="frame" x="40" y="264" width="334" height="48"/>
+                                <rect key="frame" x="40" y="285" width="334" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="voM-Yz-b9n"/>
@@ -319,7 +319,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XLs-Wo-V4m">
-                                <rect key="frame" x="40" y="332" width="334" height="48"/>
+                                <rect key="frame" x="40" y="353" width="334" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="bSK-UH-lmM"/>
@@ -347,7 +347,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ho-vZ-zIh">
-                                <rect key="frame" x="40" y="425" width="334" height="50"/>
+                                <rect key="frame" x="40" y="446" width="334" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wfi-NF-2hC"/>
@@ -361,7 +361,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rv-Sn-F64">
-                                <rect key="frame" x="110" y="483" width="194" height="43"/>
+                                <rect key="frame" x="110" y="504" width="194" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="tgJ-de-izD"/>
@@ -375,7 +375,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cards" translatesAutoresizingMaskIntoConstraints="NO" id="3kF-6V-V8V">
-                                <rect key="frame" x="87" y="134" width="240" height="41"/>
+                                <rect key="frame" x="87" y="144" width="240" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="H8G-RT-oNQ"/>
                                     <constraint firstAttribute="height" constant="41" id="SHn-ja-ghk"/>
@@ -385,7 +385,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6rv-Sn-F64" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bS0-So-5Kh" secondAttribute="leading" id="26i-4f-VqN"/>
-                            <constraint firstItem="3kF-6V-V8V" firstAttribute="top" secondItem="03L-fA-gPm" secondAttribute="top" constant="90" id="5hk-cv-7og"/>
+                            <constraint firstItem="3kF-6V-V8V" firstAttribute="top" secondItem="03L-fA-gPm" secondAttribute="top" constant="100" id="5hk-cv-7og"/>
                             <constraint firstItem="UT1-aC-CF7" firstAttribute="leading" secondItem="ftx-O1-7pi" secondAttribute="leadingMargin" priority="750" constant="20" id="BqF-3P-8k0"/>
                             <constraint firstItem="UT1-aC-CF7" firstAttribute="centerX" secondItem="ftx-O1-7pi" secondAttribute="centerX" id="Cbt-35-E5k"/>
                             <constraint firstItem="6rv-Sn-F64" firstAttribute="centerX" secondItem="3Ho-vZ-zIh" secondAttribute="centerX" id="G1S-JM-mMG"/>
@@ -396,7 +396,7 @@
                             <constraint firstItem="3Ho-vZ-zIh" firstAttribute="top" secondItem="XLs-Wo-V4m" secondAttribute="bottom" constant="45" id="S71-Ch-QLF"/>
                             <constraint firstItem="6rv-Sn-F64" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="03L-fA-gPm" secondAttribute="leading" id="Tla-bX-SjX"/>
                             <constraint firstItem="3Ho-vZ-zIh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XLs-Wo-V4m" secondAttribute="leading" id="UFJ-8X-wHj"/>
-                            <constraint firstItem="UT1-aC-CF7" firstAttribute="top" secondItem="03L-fA-gPm" secondAttribute="top" constant="220" id="V4t-zC-jsV"/>
+                            <constraint firstItem="UT1-aC-CF7" firstAttribute="top" secondItem="3kF-6V-V8V" secondAttribute="bottom" constant="100" id="V4t-zC-jsV"/>
                             <constraint firstItem="bS0-So-5Kh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6rv-Sn-F64" secondAttribute="leading" id="XEW-Ey-OwW"/>
                             <constraint firstItem="3Ho-vZ-zIh" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XLs-Wo-V4m" secondAttribute="trailing" id="el4-in-5yW"/>
                             <constraint firstItem="6rv-Sn-F64" firstAttribute="top" secondItem="3Ho-vZ-zIh" secondAttribute="bottom" constant="8" symbolic="YES" id="hr9-Zj-ce7"/>
@@ -409,8 +409,10 @@
                         <viewLayoutGuide key="safeArea" id="03L-fA-gPm"/>
                     </view>
                     <connections>
+                        <outlet property="emailFieldToLogoImageTopContraint" destination="V4t-zC-jsV" id="gAM-dN-5es"/>
                         <outlet property="emailTextField" destination="UT1-aC-CF7" id="rrR-oz-36V"/>
                         <outlet property="loginButton" destination="3Ho-vZ-zIh" id="ywb-gj-DrE"/>
+                        <outlet property="logoImageTopContraint" destination="5hk-cv-7og" id="kp4-ng-gNd"/>
                         <outlet property="passwordTextField" destination="XLs-Wo-V4m" id="V5v-R1-51y"/>
                     </connections>
                 </viewController>
