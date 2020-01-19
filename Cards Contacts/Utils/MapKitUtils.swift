@@ -11,7 +11,7 @@ import MapKit
 class MapKitUtils {
     
     static func launchOnMap(lat: CLLocationDegrees, lon: CLLocationDegrees, name: String) {
-        let regionDistance:CLLocationDistance = 10000
+        let regionDistance:CLLocationDistance = 1000
         let coordinates = CLLocationCoordinate2DMake(lat, lon)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         let options = [
