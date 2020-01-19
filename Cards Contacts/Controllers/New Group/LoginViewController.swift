@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    let SHORT_LOGO_CONTRAINT: CGFloat = 16
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -28,13 +30,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-      if textField == emailTextField {
-         passwordTextField.becomeFirstResponder()
-      } else if textField == passwordTextField {
-         textField.resignFirstResponder()
-         login()
-      }
-     return true
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            textField.resignFirstResponder()
+            login()
+        }
+        return true
     }
     
     func setupView() {
@@ -76,17 +78,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc func keyboardWasShown(notification: NSNotification){
+        self.logoImageTopContraint.constant = SHORT_LOGO_CONTRAINT
+        self.emailFieldToLogoImageTopContraint.constant = SHORT_LOGO_CONTRAINT
         UIView.animate(withDuration: 0.4) {
-            self.logoImageTopContraint.constant = 16
-            self.emailFieldToLogoImageTopContraint.constant = 16
             self.view.layoutIfNeeded()
         }
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification){
+        self.logoImageTopContraint.constant = self.defaultLogoContraint
+        self.emailFieldToLogoImageTopContraint.constant = self.defaultLogoContraint
         UIView.animate(withDuration: 0.4) {
-            self.logoImageTopContraint.constant = self.defaultLogoContraint
-            self.emailFieldToLogoImageTopContraint.constant = self.defaultLogoContraint
             self.view.layoutIfNeeded()
         }
     }
