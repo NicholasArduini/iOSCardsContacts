@@ -36,6 +36,7 @@ extension UITableView {
             imageView.frame = CGRect(x: view.bounds.midX - imageSize/2, y: view.bounds.midY - imageSize - messageLabel.bounds.height, width: imageSize, height: imageSize)
             view.addSubview(imageView)
         }
+        view.alpha = 0.6
         
         tableLineSeperator = self.separatorStyle
         self.backgroundView = view
