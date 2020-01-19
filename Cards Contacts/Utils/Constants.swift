@@ -30,6 +30,7 @@ public struct Constants {
     // View Cells
     public static let BROWSE_CARDS_TABLE_CELL : String = "browseCardsTableCell"
     public static let CARD_DETAIL_TABLE_CELL : String = "cardDetailTableCell"
+    public static let CARD_DETAIL_ADDRESS_TABLE_CELL : String = "cardDetailAddressTableCell"
     
     // NIBs
     public static let BROWSE_CARDS_TABLE_CELL_NIB : String = "BrowseCardsTableViewCell"

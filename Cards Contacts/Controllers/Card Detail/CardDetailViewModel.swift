@@ -16,8 +16,8 @@ protocol CardDetailDelegte {
 
 class CardDetailViewModel {
     
-    private var cardFieldItemsDict = [String: [FieldItem]]()
-    var cardsFieldTitles = [String]()
+    private var cardFieldItemsDict = [FieldType: [FieldItem]]()
+    var cardsFieldTitles = [FieldType]()
     var card = Card()
     var isFavourite : Bool?
     var isFollowed : Bool?
@@ -132,24 +132,18 @@ class CardDetailViewModel {
         create it with one entry, else append to existing
          */
         for fieldItem in card.fieldItems {
-            let title = fieldItem.getSectionString()
-            if var fieldItems = cardFieldItemsDict[title] {
+            let fieldType = fieldItem.type
+            if var fieldItems = cardFieldItemsDict[fieldType] {
                 fieldItems.append(fieldItem)
-                cardFieldItemsDict[title] = fieldItems
+                cardFieldItemsDict[fieldType] = fieldItems
             } else {
-                cardFieldItemsDict[title] = [fieldItem]
+                cardFieldItemsDict[fieldType] = [fieldItem]
             }
         }
         
         // sort titles
-        cardsFieldTitles = [String](cardFieldItemsDict.keys)
+        cardsFieldTitles = [FieldType](cardFieldItemsDict.keys)
         cardsFieldTitles = cardsFieldTitles.sorted(by: { $0 < $1 })
-        
-        // move other fields to end of list
-        if let otherIndex = cardsFieldTitles.firstIndex(of: FieldItem.OTHER_TITLE) {
-            let otherElement = cardsFieldTitles.remove(at: otherIndex)
-            cardsFieldTitles.append(otherElement)
-        }
         
     }
 }

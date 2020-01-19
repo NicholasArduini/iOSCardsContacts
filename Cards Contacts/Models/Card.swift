@@ -47,14 +47,12 @@ public class Card: Object, Decodable {
     }
 }
 
+
 public class FieldItem: Object, Decodable {
-    
-    enum FieldType: String, Decodable {
-        case number, email, other
-    }
     
     @objc dynamic var name: String = ""
     @objc dynamic var value: String = ""
+    @objc dynamic var addressValue: Address?
     @objc dynamic var typeString: String = FieldType.other.rawValue
     @objc dynamic var compoundKey = ""
     @objc dynamic var uid : String = ""
@@ -77,11 +75,13 @@ public class FieldItem: Object, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         typeString = try container.decode(String.self, forKey: .typeString)
         name = try container.decode(String.self, forKey: .name)
-        value = try container.decode(String.self, forKey: .value)
-        
-        if type == .number {
-            value = value.formatAsPhoneNumber()
+        if type == .address {
+            addressValue = try container.decode(Address.self, forKey: .value)
+        } else {
+            value = try container.decode(String.self, forKey: .value)
         }
+
+        formatFields()
     }
     
     required convenience public init(from decoder: Decoder, uid: String) throws {
@@ -91,21 +91,134 @@ public class FieldItem: Object, Decodable {
         self.compoundKey = compoundKeyValue()
     }
     
+    func formatFields() {
+        if type == .number {
+            self.value = value.formatAsPhoneNumber()
+        } else if type == .date {
+            self.value = value.formatToSimpleDate()
+        }
+    }
+    
     func compoundKeyValue() -> String {
-        return "\(uid)\(name)\(value)"
+        var key = "\(uid)\(name)"
+        switch type {
+        case .address:
+            if let address = addressValue {
+                key = "\(uid)\(name)\(address.toString())"
+            }
+        default:
+            key = "\(uid)\(name)\(value)"
+        }
+        return key
     }
     
     override public static func primaryKey() -> String? {
         return "compoundKey"
     }
+}
+
+
+public class Address: Object, Decodable {
+    @objc dynamic var street1: String = ""
+    @objc dynamic var street2: String?
+    @objc dynamic var city: String = ""
+    @objc dynamic var province: String = ""
+    @objc dynamic var zipcode: String = ""
+    @objc dynamic var country: String = ""
+    @objc dynamic var compoundKey = ""
+    
+    private enum CodingKeys: String, CodingKey {
+        case street1
+        case street2
+        case city
+        case province
+        case zipcode
+        case country
+    }
+    
+    func toString() -> String {
+        var addressString = "\(street1)"
+        if let street2 = street2 {
+            addressString.append(" \(street2)")
+        }
+        addressString.append("\(province) \(zipcode) \(country)")
+        return addressString
+    }
+    
+    func toUIString() -> String {
+        var addressString = "\(street1)\n"
+        if let street2 = street2 {
+            addressString.append("\(street2)\n")
+        }
+        addressString.append("\(city) \(province) \(zipcode)\n\(country)")
+        return addressString
+    }
+    
+    private func decode(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        street1 = try container.decode(String.self, forKey: .street1)
+        if container.contains(.street2) {
+            street2 = try container.decode(String.self, forKey: .street2)
+        }
+        city = try container.decode(String.self, forKey: .city)
+        province = try container.decode(String.self, forKey: .province)
+        zipcode = try container.decode(String.self, forKey: .zipcode)
+        country = try container.decode(String.self, forKey: .country)
+    }
+    
+    required convenience public init(from decoder: Decoder) throws {
+        self.init()
+        try decode(from: decoder)
+        self.compoundKey = toString()
+    }
+    
+    override public static func primaryKey() -> String? {
+        return "compoundKey"
+    }
+}
+
+
+enum FieldType: String, Decodable, Comparable {
+    case number, email, social, date, address, other
+    
+    private var sortOrder: Int {
+        switch self {
+            case .number:
+                return 0
+            case .email:
+                return 1
+            case .social:
+                return 3
+            case .address:
+                return 4
+            case .date:
+                return 5
+            case .other:
+                return 6
+        }
+    }
+
+     static func ==(lhs: FieldType, rhs: FieldType) -> Bool {
+        return lhs.sortOrder == rhs.sortOrder
+    }
+
+    static func <(lhs: FieldType, rhs: FieldType) -> Bool {
+       return lhs.sortOrder < rhs.sortOrder
+    }
     
     func getSectionString() -> String {
         var title = ""
-        switch self.type {
+        switch self {
         case .number:
             title = "Phone number"
         case .email:
             title = "Email"
+        case .social:
+            title = "Social Media"
+        case .date:
+            title = "Dates"
+        case .address:
+            title = "Address"
         case .other:
             title = FieldItem.OTHER_TITLE
         }

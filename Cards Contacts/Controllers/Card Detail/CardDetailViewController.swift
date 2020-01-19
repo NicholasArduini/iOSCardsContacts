@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import MapKit
 
 enum CardDetailType {
     case myCard
@@ -31,7 +32,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     private var spinner = UIActivityIndicatorView(style: .whiteLarge)
     
     private var cardDetailViewModel : CardDetailViewModel!
-    private var datasource: TableViewDataSource<CardAttributeFieldTableViewCell,CardDetailViewModel,FieldItem>!
+    private var datasource: CardDetailTableViewDataSource!
     
     var cardDetailType : CardDetailType = .myCard
     var uid: String?
@@ -49,19 +50,29 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
         
         self.cardDetailViewModel.delegate = self
         self.cardDetailViewModel.updateCardDetails()
-        self.datasource = TableViewDataSource(cellIdentifier: Constants.CARD_DETAIL_TABLE_CELL, emptyMessage: nil, emptyImageName: nil, viewModel: self.cardDetailViewModel) { cell, model in
-            let cell: CardAttributeFieldTableViewCell = cell
-            
-            cell.setCell(fieldItem: model, view: self.view) { fieldItem in
-                if fieldItem.type == .number {
-                    ContactActions.makeCall(vc: self, phoneNumber: fieldItem.value)
-                } else if fieldItem.type == .email {
-                    ContactActions.composeEmail(vc: self, email: fieldItem.value)
-                }
-            }
+        
+        self.datasource = CardDetailTableViewDataSource(cardDetailViewModel: self.cardDetailViewModel, view: self.view) { fieldItem in
+            self.handleCardActionClicked(fieldItem: fieldItem)
         }
         self.tableView.dataSource = self.datasource
         self.tableView.delegate = self
+        
+        self.tableView.estimatedRowHeight = 300
+        self.tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    func handleCardActionClicked(fieldItem: FieldItem) {
+        if fieldItem.type == .number {
+            ContactActions.makeCall(vc: self, phoneNumber: fieldItem.value )
+        } else if fieldItem.type == .email {
+            ContactActions.composeEmail(vc: self, email: fieldItem.value )
+        } else if fieldItem.type == .address {
+            if let address = fieldItem.addressValue {
+                MapKitUtils.getLatLonFrom(address: address.toString(), onError: { _ in }, onSuccess: { lat, lon in
+                    MapKitUtils.launchOnMap(lat: lat, lon: lon, name: "\(self.cardDetailViewModel.card.name) \(fieldItem.name)")
+                })
+            }
+        }
     }
     
     
@@ -199,7 +210,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     // MARK: UITableViewDelegate methods
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title = self.cardDetailViewModel.cardsFieldTitles[section]
+        let title = self.cardDetailViewModel.cardsFieldTitles[section].getSectionString()
         let width = self.view.frame.size.width
         let view = Common.buildTableViewSectionHeader(title: title, height: SECTION_HEADER_HEIGHT, width: width, cornerRadius: 6)
         return view
@@ -208,5 +219,4 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return SECTION_HEADER_HEIGHT
     }
-    
 }

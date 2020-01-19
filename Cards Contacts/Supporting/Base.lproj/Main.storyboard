@@ -177,6 +177,68 @@
                                             <outlet property="fieldName" destination="5d9-SC-eHK" id="glc-yu-L5a"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cardDetailAddressTableCell" id="v2e-VF-M2f" customClass="CardAddressAttributeFieldTableViewCell" customModule="Cards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="370" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v2e-VF-M2f" id="eZH-gt-tPo">
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLk-zT-DDM">
+                                                    <rect key="frame" x="20" y="11" width="121" height="106"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="121" id="s9r-VC-wpN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VEd-Ox-9Qu">
+                                                    <rect key="frame" x="149" y="11" width="201" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                    <state key="normal" title="Value"/>
+                                                    <connections>
+                                                        <action selector="actionButton:" destination="v2e-VF-M2f" eventType="touchUpInside" id="iTp-V8-rBg"/>
+                                                    </connections>
+                                                </button>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqY-nu-rOR">
+                                                    <rect key="frame" x="149" y="8" width="221" height="31"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSm-mt-ADf">
+                                                    <rect key="frame" x="149" y="47" width="201" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="R0h-IJ-s7L"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="NLk-zT-DDM" firstAttribute="top" secondItem="eZH-gt-tPo" secondAttribute="topMargin" id="0Qr-1k-p3O"/>
+                                                <constraint firstItem="VEd-Ox-9Qu" firstAttribute="trailing" secondItem="eZH-gt-tPo" secondAttribute="trailingMargin" id="4P9-S9-7xK"/>
+                                                <constraint firstAttribute="trailing" secondItem="sqY-nu-rOR" secondAttribute="trailing" id="5aH-Sa-7s5"/>
+                                                <constraint firstItem="VEd-Ox-9Qu" firstAttribute="bottom" secondItem="lSm-mt-ADf" secondAttribute="topMargin" constant="-16" id="8Kj-hv-Fpu"/>
+                                                <constraint firstAttribute="bottom" secondItem="lSm-mt-ADf" secondAttribute="bottom" constant="11" id="KpK-m4-NGG"/>
+                                                <constraint firstItem="sqY-nu-rOR" firstAttribute="leading" secondItem="NLk-zT-DDM" secondAttribute="trailing" constant="8" id="LqJ-ay-seY"/>
+                                                <constraint firstItem="lSm-mt-ADf" firstAttribute="leading" secondItem="VEd-Ox-9Qu" secondAttribute="leading" id="S6S-LW-a7q"/>
+                                                <constraint firstItem="VEd-Ox-9Qu" firstAttribute="leading" secondItem="NLk-zT-DDM" secondAttribute="trailing" constant="8" id="a4O-ZY-LX8"/>
+                                                <constraint firstItem="sqY-nu-rOR" firstAttribute="top" secondItem="eZH-gt-tPo" secondAttribute="top" constant="8" id="er1-KB-GqJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="lSm-mt-ADf" secondAttribute="trailing" constant="20" symbolic="YES" id="hlt-Ml-Pa4"/>
+                                                <constraint firstItem="VEd-Ox-9Qu" firstAttribute="top" secondItem="eZH-gt-tPo" secondAttribute="topMargin" id="hpu-uQ-IcE"/>
+                                                <constraint firstItem="NLk-zT-DDM" firstAttribute="leading" secondItem="eZH-gt-tPo" secondAttribute="leadingMargin" id="qaA-aC-7mw"/>
+                                                <constraint firstItem="NLk-zT-DDM" firstAttribute="bottom" secondItem="eZH-gt-tPo" secondAttribute="bottomMargin" id="s3h-IO-IuK"/>
+                                                <constraint firstItem="lSm-mt-ADf" firstAttribute="top" secondItem="sqY-nu-rOR" secondAttribute="bottom" constant="8" id="vIn-vC-Ica"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="actionButton" destination="VEd-Ox-9Qu" id="Wmh-CC-hCx"/>
+                                            <outlet property="addressLabel" destination="sqY-nu-rOR" id="8gs-Kt-ugu"/>
+                                            <outlet property="fieldName" destination="NLk-zT-DDM" id="zGR-Rm-Kr8"/>
+                                            <outlet property="mapImageView" destination="lSm-mt-ADf" id="Kks-nB-hzR"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -231,7 +293,7 @@
                     <viewLayoutGuide key="safeArea" id="1TF-Mr-gTv"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2825" y="520"/>
+            <point key="canvasLocation" x="2824.6376811594205" y="519.64285714285711"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="96Y-rS-gFy">

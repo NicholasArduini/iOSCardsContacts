@@ -38,11 +38,15 @@
 		5D54F4D923B8F52600B6B027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D54F4D823B8F52600B6B027 /* GoogleService-Info.plist */; };
 		5D7669D023B2BD0B00BF8BA5 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */; };
 		5D7669D323B2BDB400BF8BA5 /* MyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */; };
+		5D81933B23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D81933A23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift */; };
+		5D81933D23CB5D6F00E5B1C0 /* MapKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D81933C23CB5D6F00E5B1C0 /* MapKitUtils.swift */; };
 		5D90610B23C3FC970012A01A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90610A23C3FC970012A01A /* UITableView+Extension.swift */; };
+		5D90610D23C6B90B0012A01A /* CardDetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D90610C23C6B90B0012A01A /* CardDetailTableViewDataSource.swift */; };
 		5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BB323B25622003CF582 /* UIColor+Extension.swift */; };
 		5DA55BB923B25895003CF582 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BB823B25895003CF582 /* Constants.swift */; };
 		5DA55BBC23B25DB6003CF582 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BBB23B25DB6003CF582 /* UIButton+Extension.swift */; };
 		5DA55BBE23B25DE4003CF582 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA55BBD23B25DE4003CF582 /* UITextField+Extension.swift */; };
+		5DF56A3723CE87A60026ACDF /* BaseCardAttributeFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF56A3623CE87A60026ACDF /* BaseCardAttributeFieldTableViewCell.swift */; };
 		5DFD77D523B2506D00C6EF1A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD77D423B2506D00C6EF1A /* AuthService.swift */; };
 		8B997BEA14D895E5F07DB2CF /* Pods_Cards_Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0803D779143F206B35B6955B /* Pods_Cards_Contacts.framework */; };
 /* End PBXBuildFile section */
@@ -83,11 +87,15 @@
 		5D54F4D823B8F52600B6B027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5D7669D223B2BDB400BF8BA5 /* MyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewModel.swift; sourceTree = "<group>"; };
+		5D81933A23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddressAttributeFieldTableViewCell.swift; sourceTree = "<group>"; };
+		5D81933C23CB5D6F00E5B1C0 /* MapKitUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitUtils.swift; sourceTree = "<group>"; };
 		5D90610A23C3FC970012A01A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		5D90610C23C6B90B0012A01A /* CardDetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewDataSource.swift; sourceTree = "<group>"; };
 		5DA55BB323B25622003CF582 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5DA55BB823B25895003CF582 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DA55BBB23B25DB6003CF582 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		5DA55BBD23B25DE4003CF582 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5DF56A3623CE87A60026ACDF /* BaseCardAttributeFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCardAttributeFieldTableViewCell.swift; sourceTree = "<group>"; };
 		5DFD77D423B2506D00C6EF1A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		927C993C8205C43704653518 /* Pods-Cards Contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cards Contacts.release.xcconfig"; path = "Target Support Files/Pods-Cards Contacts/Pods-Cards Contacts.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,8 +224,19 @@
 			isa = PBXGroup;
 			children = (
 				5D7669CF23B2BD0B00BF8BA5 /* TableViewDataSource.swift */,
+				5D90610C23C6B90B0012A01A /* CardDetailTableViewDataSource.swift */,
 			);
 			path = "Data Sources";
+			sourceTree = "<group>";
+		};
+		5D81933923C960EE00E5B1C0 /* CardDetailAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				5D81933A23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift */,
+				5D54F4CE23B6BBA300B6B027 /* CardAttributeFieldTableViewCell.swift */,
+				5DF56A3623CE87A60026ACDF /* BaseCardAttributeFieldTableViewCell.swift */,
+			);
+			path = CardDetailAttributes;
 			sourceTree = "<group>";
 		};
 		5DA55BB523B256B5003CF582 /* Utils */ = {
@@ -227,6 +246,7 @@
 				5DA55BB823B25895003CF582 /* Constants.swift */,
 				5D54F4D023B6BD0500B6B027 /* Common.swift */,
 				5D2A853823BB1A3B0040DBDE /* ContactActions.swift */,
+				5D81933C23CB5D6F00E5B1C0 /* MapKitUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -245,8 +265,8 @@
 		5DA55BBF23B26579003CF582 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5D81933923C960EE00E5B1C0 /* CardDetailAttributes */,
 				5D2A854223BBBBBF0040DBDE /* BrowseCardsTableViewCell */,
-				5D54F4CE23B6BBA300B6B027 /* CardAttributeFieldTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -427,15 +447,19 @@
 				5D3D237C22C02F88006B7459 /* BrowseMyCardsViewController.swift in Sources */,
 				5D54F4C123B5C91C00B6B027 /* String+Extension.swift in Sources */,
 				5D54F4CF23B6BBA300B6B027 /* CardAttributeFieldTableViewCell.swift in Sources */,
+				5D90610D23C6B90B0012A01A /* CardDetailTableViewDataSource.swift in Sources */,
 				5D54F4BF23B5C0C600B6B027 /* UIImage+Extension.swift in Sources */,
 				5D54F4D323B6C36300B6B027 /* CardDetailViewModel.swift in Sources */,
 				5D2A853F23BB9ADC0040DBDE /* SearchUsersViewModel.swift in Sources */,
 				5D54F4B823B40DEE00B6B027 /* CardSummaryList.swift in Sources */,
 				5D3D237822C02084006B7459 /* SignUpViewController.swift in Sources */,
+				5DF56A3723CE87A60026ACDF /* BaseCardAttributeFieldTableViewCell.swift in Sources */,
 				5D2A853D23BB98470040DBDE /* SearchUsersViewController.swift in Sources */,
 				5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */,
+				5D81933B23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift in Sources */,
 				5D54F4D723B7F48800B6B027 /* UIView+Extension.swift in Sources */,
 				5D54F4BA23B50A3E00B6B027 /* CardsWebService.swift in Sources */,
+				5D81933D23CB5D6F00E5B1C0 /* MapKitUtils.swift in Sources */,
 				5D3D235E22C0101C006B7459 /* AppDelegate.swift in Sources */,
 				5D54F4D123B6BD0500B6B027 /* Common.swift in Sources */,
 				5D3D237222C0115B006B7459 /* Reachability.swift in Sources */,

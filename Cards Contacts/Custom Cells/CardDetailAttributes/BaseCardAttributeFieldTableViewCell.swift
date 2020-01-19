@@ -1,32 +1,37 @@
 //
-//  CardAttributeFieldTableViewCell.swift
+//  BaseCardAttributeFieldTableViewCell.swift
 //  Cards Contacts
 //
-//  Created by Nicholas Arduini on 12/27/19.
-//  Copyright © 2019 Nicholas Arduini. All rights reserved.
+//  Created by Nicholas Arduini on 1/14/20.
+//  Copyright © 2020 Nicholas Arduini. All rights reserved.
 //
 
 import UIKit
 
-class CardAttributeFieldTableViewCell: UITableViewCell {
+class BaseCardAttributeFieldTableViewCell: UITableViewCell {
     
     @IBOutlet weak var fieldName: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     
+    var parentView: UIView?
     var fieldItem : FieldItem?
     var actionPressed : ((_ fieldItem: FieldItem) -> ())?
-    var parentView: UIView?
-    
     private var isCopying = false
-    
+        
     func setCell(fieldItem: FieldItem, view: UIView, actionPressed: @escaping (_ fieldItem: FieldItem) -> ()) {
         self.fieldItem = fieldItem
         self.parentView = view
         self.actionPressed = actionPressed
-        fieldName.text = fieldItem.name
-        actionButton.setTitle(fieldItem.value, for: .normal)
         
         actionButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(copyValuePressed)))
+    }
+    
+    @IBAction func actionButton(_ sender: Any) {
+        if let fieldItem = fieldItem {
+            if let actionPressed = actionPressed {
+                actionPressed(fieldItem)
+            }
+        }
     }
     
     @objc func copyValuePressed() {
@@ -44,13 +49,4 @@ class CardAttributeFieldTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func actionButton(_ sender: Any) {
-        if let fieldItem = fieldItem {
-            if let actionPressed = actionPressed {
-                actionPressed(fieldItem)
-            }
-        }
-    }
 }
-
-

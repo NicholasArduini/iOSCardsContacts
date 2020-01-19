@@ -18,7 +18,7 @@ extension String {
         return self.filter("0123456789.".contains)
     }
     
-    func formatAsPhoneNumber() ->String{
+    func formatAsPhoneNumber() ->String {
         if(self.count >= 10){
             let startIndex = self.index(self.startIndex, offsetBy: 3)
             let middleStartIndex = self.index(self.startIndex, offsetBy: 3)
@@ -28,6 +28,21 @@ extension String {
             return "(\(self[..<startIndex])) \(self[range]) \(self[middleEndIndex...])"
         } else {
             return self
+        }
+    }
+    
+    func formatToSimpleDate() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "MM/dd/yyyy"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
+
+        if let date = dateFormatterGet.date(from: self) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+           print("There was an error decoding the string")
+            return ""
         }
     }
 }
