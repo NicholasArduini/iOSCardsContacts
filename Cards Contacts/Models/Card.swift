@@ -34,12 +34,15 @@ public class Card: Object, Decodable {
         }
         
         // use superDecoder() to pass uid to custom fieldItem decoder
-        var dataContainer = try container.nestedUnkeyedContainer(forKey: .fieldItems)
-        while !dataContainer.isAtEnd {
-            let nestedDecoder = try dataContainer.superDecoder()
-            let fieldItem = try FieldItem(from: nestedDecoder, uid: self.uid)
-            fieldItems.append(fieldItem)
+        let dataContainer = try? container.nestedUnkeyedContainer(forKey: .fieldItems)
+        if var dataContainer = dataContainer {
+            while !dataContainer.isAtEnd {
+                let nestedDecoder = try dataContainer.superDecoder()
+                let fieldItem = try FieldItem(from: nestedDecoder, uid: self.uid)
+                fieldItems.append(fieldItem)
+            }
         }
+        
     }
     
     override public static func primaryKey() -> String? {

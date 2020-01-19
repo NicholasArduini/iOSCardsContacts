@@ -22,8 +22,7 @@ class AuthService {
     }
     
     static func getCurrentUserUID() -> String {
-        // TODO change to actual identifier when data is ready
-        return "Nicholas"
+        return Auth.auth().currentUser?.uid ?? ""
     }
     
     func signIn(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {

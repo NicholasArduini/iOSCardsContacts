@@ -42,6 +42,18 @@ class FirebaseManager {
         }
     }
     
+    func addDocument(collectionName: String, documentName: String, data: [String: Any], complete: @escaping (Error?) -> ()) {
+        db.collection(collectionName).document(documentName).setData(
+            data
+        ) { error in
+            if let error = error {
+                complete(error)
+            } else {
+                complete(nil)
+            }
+        }
+    }
+    
     func searchCollection<T : Decodable>(objectType: T.Type, collectionName: String, searchField: String, searchText: String, complete: @escaping ([T]?, Error?) -> ()) {
         let docRef = db.collection(collectionName).whereField(searchField, isGreaterThanOrEqualTo: searchText).whereField(searchField, isLessThanOrEqualTo: searchText + "\u{f8ff}").limit(to: 20)
         

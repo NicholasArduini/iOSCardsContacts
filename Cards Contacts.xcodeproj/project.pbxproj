@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D16EADC23D49B6900D94E4B /* UserWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16EADB23D49B6900D94E4B /* UserWebService.swift */; };
 		5D2A853123B9D19A0040DBDE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */; };
 		5D2A853423BB121D0040DBDE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853323BB121D0040DBDE /* FirebaseManager.swift */; };
 		5D2A853923BB1A3B0040DBDE /* ContactActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2A853823BB1A3B0040DBDE /* ContactActions.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		0803D779143F206B35B6955B /* Pods_Cards_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cards_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		120E9978FC75120260C8CB9B /* Pods-Cards Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cards Contacts.debug.xcconfig"; path = "Target Support Files/Pods-Cards Contacts/Pods-Cards Contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		5D16EADB23D49B6900D94E4B /* UserWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWebService.swift; sourceTree = "<group>"; };
 		5D2A853023B9D19A0040DBDE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5D2A853323BB121D0040DBDE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		5D2A853823BB1A3B0040DBDE /* ContactActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactActions.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				5DFD77D423B2506D00C6EF1A /* AuthService.swift */,
 				5D54F4B923B50A3E00B6B027 /* CardsWebService.swift */,
+				5D16EADB23D49B6900D94E4B /* UserWebService.swift */,
 			);
 			path = "Web Services";
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				5D2A853D23BB98470040DBDE /* SearchUsersViewController.swift in Sources */,
 				5DA55BB423B25622003CF582 /* UIColor+Extension.swift in Sources */,
 				5D81933B23C9611300E5B1C0 /* CardAddressAttributeFieldTableViewCell.swift in Sources */,
+				5D16EADC23D49B6900D94E4B /* UserWebService.swift in Sources */,
 				5D54F4D723B7F48800B6B027 /* UIView+Extension.swift in Sources */,
 				5D54F4BA23B50A3E00B6B027 /* CardsWebService.swift in Sources */,
 				5D81933D23CB5D6F00E5B1C0 /* MapKitUtils.swift in Sources */,

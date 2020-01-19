@@ -10,15 +10,15 @@ import Foundation
 
 class CardsWebService {
     
-    private let CARDS_LIST_COLLECTION_NAME = "cards-list"
-    private let USER_CARDS_COLLECTION_NAME = "user-cards"
+    static let CARDS_LIST_COLLECTION_NAME = "cards-list"
+    static let USER_CARDS_COLLECTION_NAME = "user-cards"
     
     let firebaseManager = FirebaseManager()
     
     func getCurrentUserCardList(complete: @escaping (CardSummaryList?, Error?) -> ()) {
         
         self.firebaseManager.getDocument(objectType: CardSummaryList.self,
-                                         collectionName: CARDS_LIST_COLLECTION_NAME,
+                                         collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME,
                                          documentName: AuthService.getCurrentUserUID(),
         complete: { cardList, error in
             complete(cardList, error)
@@ -29,7 +29,7 @@ class CardsWebService {
                      complete: @escaping (Card?, Error?) -> ()) {
         
         self.firebaseManager.getDocument(objectType: Card.self,
-                                         collectionName: USER_CARDS_COLLECTION_NAME,
+                                         collectionName: CardsWebService.USER_CARDS_COLLECTION_NAME,
                                          documentName: uid,
         complete: { cards, error in
             complete(cards, error)
@@ -45,7 +45,7 @@ class CardsWebService {
         }
         
         self.firebaseManager.searchCollection(objectType: Card.self,
-                                           collectionName: USER_CARDS_COLLECTION_NAME,
+                                           collectionName: CardsWebService.USER_CARDS_COLLECTION_NAME,
                                            searchField: "name", searchText: searchText,
         complete: { card, error in
             complete(card, error)
@@ -56,7 +56,7 @@ class CardsWebService {
                             complete: (@escaping (Error?) -> ())) {
                 
         if let cardDict = card.dict {
-            self.firebaseManager.addArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+            self.firebaseManager.addArrayItem(collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME,
                                            documentName: AuthService.getCurrentUserUID(),
                                            arrayName: "cards",
                                            fields: cardDict,
@@ -78,7 +78,7 @@ class CardsWebService {
         newCard.flipFavourite()
         
         if let oldCardDict = oldCard.dict, let newCardDict = newCard.dict {
-            self.firebaseManager.updateArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+            self.firebaseManager.updateArrayItem(collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME,
                                            documentName: AuthService.getCurrentUserUID(),
                                            arrayName: "cards",
                                            oldFields: oldCardDict,
@@ -97,7 +97,7 @@ class CardsWebService {
                     complete: (@escaping (Error?) -> ())) {
                 
         if let cardDict = card.dict {
-            self.firebaseManager.removeArrayItem(collectionName: CARDS_LIST_COLLECTION_NAME,
+            self.firebaseManager.removeArrayItem(collectionName: CardsWebService.CARDS_LIST_COLLECTION_NAME,
                                            documentName: AuthService.getCurrentUserUID(),
                                            arrayName: "cards",
                                            fields: cardDict,

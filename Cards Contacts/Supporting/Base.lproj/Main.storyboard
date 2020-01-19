@@ -519,9 +519,9 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="txG-8e-0Ac" id="ScV-1U-hWb"/>
+                        <outlet property="fullNameTextField" destination="1YD-9R-XK4" id="LNs-fN-3wH"/>
                         <outlet property="passwordTextField" destination="UxL-zp-BfO" id="sjh-99-o3Q"/>
                         <outlet property="signUpButton" destination="Zb4-ig-IBj" id="tM9-as-xcf"/>
-                        <outlet property="usernameTextField" destination="1YD-9R-XK4" id="R3m-J1-BfA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3z-8R-VMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
