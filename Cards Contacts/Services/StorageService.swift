@@ -88,6 +88,18 @@ class StorageService {
         return nil
     }
     
+    func removeAll() {
+        if let realm = self.realm {
+            do {
+                try realm.write {
+                    realm.deleteAll()
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+    
     static func migrateVersion() {
         print("Realm \(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "none found")" )
         var config = Realm.Configuration(

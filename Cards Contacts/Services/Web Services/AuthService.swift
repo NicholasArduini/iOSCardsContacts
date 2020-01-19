@@ -85,6 +85,7 @@ class AuthService {
     func logout(onSuccess: @escaping () -> ()) {
         do {
             try Auth.auth().signOut()
+            StorageService().removeAll()
             onSuccess()
         } catch let error {
             print(error)
