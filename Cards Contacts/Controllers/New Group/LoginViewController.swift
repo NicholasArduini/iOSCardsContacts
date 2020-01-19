@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -27,10 +27,22 @@ class LoginViewController: UIViewController {
         self.deregisterFromKeyboardNotifications()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      if textField == emailTextField {
+         passwordTextField.becomeFirstResponder()
+      } else if textField == passwordTextField {
+         textField.resignFirstResponder()
+         login()
+      }
+     return true
+    }
+    
     func setupView() {
         //set underline for email and password textfields
         emailTextField.makeTextFieldUnderline()
         passwordTextField.makeTextFieldUnderline()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         
         loginButton.makeRounded()
         self.hideKeyboardWhenTappedAround()
@@ -38,6 +50,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        login()
+    }
+    
+    func login() {
         self.loginButton.loadingIndicator(true)
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService(self).signIn(email: email, password: password, onSuccess: {
