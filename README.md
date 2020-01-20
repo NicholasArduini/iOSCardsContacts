@@ -37,3 +37,10 @@
   - Considering alternative such as
     - Cloud computing services (AWS, GCP, Azure)
     - Realm Cloud
+    
+![alt tag](https://user-images.githubusercontent.com/14320184/72694518-3d715680-3b03-11ea-8098-32366f459310.gif)
+![alt tag](https://user-images.githubusercontent.com/14320184/72694014-5aa52580-3b01-11ea-9b20-a2c0319770c9.PNG)
+![alt tag](https://user-images.githubusercontent.com/14320184/72694010-5a0c8f00-3b01-11ea-8383-2cfeaa56f6bd.PNG)
+![alt tag](https://user-images.githubusercontent.com/14320184/72694011-5a0c8f00-3b01-11ea-90c1-9c3ad2067068.PNG)
+![alt tag](https://user-images.githubusercontent.com/14320184/72694012-5a0c8f00-3b01-11ea-9f9a-4009257e38a2.PNG)
+![alt tag](https://user-images.githubusercontent.com/14320184/72694013-5aa52580-3b01-11ea-946f-53cfe219a75e.PNG)
