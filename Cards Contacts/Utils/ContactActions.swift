@@ -35,4 +35,10 @@ class ContactActions {
             vc.presentAlert(withMessage: Constants.COULD_NOT_COMPOSE_EMAIL)
         }
     }
+    
+    static func launchMap(address: String, pinName: String) {
+        MapKitUtils.getLatLonFrom(address: address, onError: { _ in }, onSuccess: { lat, lon in
+            MapKitUtils.launchOnMap(lat: lat, lon: lon, name: pinName)
+        })
+    }
 }

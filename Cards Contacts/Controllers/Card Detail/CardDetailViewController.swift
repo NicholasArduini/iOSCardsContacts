@@ -68,10 +68,7 @@ class CardDetailViewController: UIViewController, UITableViewDelegate, CardDetai
             ContactActions.composeEmail(vc: self, email: fieldItem.value )
         } else if fieldItem.type == .address {
             if let address = fieldItem.addressValue {
-                MapKitUtils.getLatLonFrom(address: address.toString(), onError: { _ in }, onSuccess: { [weak self] lat, lon in
-                    guard let `self` = self else { return }
-                    MapKitUtils.launchOnMap(lat: lat, lon: lon, name: "\(self.cardDetailViewModel.card.name) \(fieldItem.name)")
-                })
+                ContactActions.launchMap(address: address.toString(), pinName: "\(self.cardDetailViewModel.card.name) \(fieldItem.name)")
             }
         }
     }
