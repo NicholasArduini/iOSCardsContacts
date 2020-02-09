@@ -1,12 +1,13 @@
 # Cards Contacts 
 
 ## Overview
-* Phone book for the common day internet 
+* Phone book for the modern day internet 
 * Find your friends / colleagues and share common contact information (phone numbers, email addresses, social media usernames, dates, and locations)
 * When your friend (or card) changes their number, email, address, etc you don't need to ask them and update your copy of their information. Once they have changed their profile and you will always know the latest
 * Save favorites, search and discover other cards, and store all card data locally on your device for offline usage
 * Current feature list includes
   - Save and filter favorites
+  - Tap and hold contact info to copy, indicated with popup and haptic feedback
   - Search and discover other cards
   - Store all cards data locally on your device for offline usage
   - Support for native dark and light modes
