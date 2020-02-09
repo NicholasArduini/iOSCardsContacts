@@ -7,6 +7,7 @@
 * Save favorites, search and discover other cards, and store all card data locally on your device for offline usage
 * Current feature list includes
   - Save and filter favorites
+  - Tap contact info to launch actions like call number or send an email
   - Tap and hold contact info to copy, indicated with popup and haptic feedback
   - Search and discover other cards
   - Store all cards data locally on your device for offline usage
